@@ -1,0 +1,82 @@
+/*
+ * CSS Flower - By Ildar Sagdejev ( http://twitter.com/tknomad )
+ */
+
+@import 'nib/vendor'
+
+count = 5
+diameter = 120px
+distance = 1.2 // 1 = flush
+twirls = 3
+swirl = 720deg // 0 = first leaf at the top; goes clockwise
+time = 3.2s
+colors = #3535e0, red, #00bd00, yellow, #ebe8e8
+
+// auto
+dAngle = 360 / count
+grow = 1 + (2 * distance)
+
+#flower
+  width diameter
+  height diameter
+  border-radius 100%
+  cursor pointer
+  .inner
+    height 100%
+  .child
+    width diameter
+    height diameter
+    border-radius 100%
+    position absolute
+    left 0
+    top 0
+    .cover
+      height 100%
+      background-image url(../gfx/cover.jpg)
+      background-size 100%
+      border-radius 100%
+      box-shadow 0 0 2px 4px #d1d1d1
+    .leaf
+      height 100%
+      color white
+      border-radius 100%
+      img
+        width 64px
+        height 64px
+        left 28px
+        top 28px
+        position absolute
+    for c, i in colors
+      &:nth-child({i+1})
+        rot = (dAngle * i - 90)
+        transform rotate((rot)deg)
+        .leaf
+          background-color c
+          background-size 100%
+          opacity 0.84
+          .glass-holder
+            height 100%
+            transform rotate(-(rot)deg)
+  .glass
+    height 100%
+    background-image url('../gfx/glass.png')
+    background-size 100%
+  &:hover
+    transform scale(grow) // zoom click area
+    .inner
+      transform scale(1 / grow) // but do not zoom internals
+    .child .leaf
+      animation expand time 1 ease-in-out
+      animation-fill-mode forwards
+      transition box-shadow 0.16s ease-in-out
+      &:hover
+        box-shadow 0 0 34px rgba(211, 217, 255, 1), 0 0 0 1px black, inset 0 1px 0 rgba(255, 255, 255, 0.2)
+      .glass
+        animation cover-stationary time 1 ease-in-out
+        animation-fill-mode forwards
+@keyframes expand
+  to
+    transform rotate(swirl) translateX(diameter * distance) rotate((twirls * 360 + 90)deg)
+@keyframes cover-stationary
+  to
+    transform rotate((-1 * (swirl + twirls * 360 + 90))deg)

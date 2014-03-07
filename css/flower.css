@@ -1,0 +1,310 @@
+/*
+ * CSS Flower - By Ildar Sagdejev ( http://twitter.com/tknomad )
+ */
+#flower {
+  width: 120px;
+  height: 120px;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  cursor: pointer;
+}
+#flower .inner {
+  height: 100%;
+}
+#flower .child {
+  width: 120px;
+  height: 120px;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#flower .child .cover {
+  height: 100%;
+  background-image: url("../gfx/cover.jpg");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-box-shadow: 0 0 2px 4px #d1d1d1;
+  box-shadow: 0 0 2px 4px #d1d1d1;
+}
+#flower .child .leaf {
+  height: 100%;
+  color: #fff;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+#flower .child .leaf img {
+  width: 64px;
+  height: 64px;
+  left: 28px;
+  top: 28px;
+  position: absolute;
+}
+#flower .child:nth-child(1) {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+#flower .child:nth-child(1) .leaf {
+  background-color: #3535e0;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
+  opacity: 0.84;
+  filter: alpha(opacity=84);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
+}
+#flower .child:nth-child(1) .leaf .glass-holder {
+  height: 100%;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+#flower .child:nth-child(2) {
+  -webkit-transform: rotate(-18deg);
+  -moz-transform: rotate(-18deg);
+  -o-transform: rotate(-18deg);
+  -ms-transform: rotate(-18deg);
+  transform: rotate(-18deg);
+}
+#flower .child:nth-child(2) .leaf {
+  background-color: #f00;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
+  opacity: 0.84;
+  filter: alpha(opacity=84);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
+}
+#flower .child:nth-child(2) .leaf .glass-holder {
+  height: 100%;
+  -webkit-transform: rotate(18deg);
+  -moz-transform: rotate(18deg);
+  -o-transform: rotate(18deg);
+  -ms-transform: rotate(18deg);
+  transform: rotate(18deg);
+}
+#flower .child:nth-child(3) {
+  -webkit-transform: rotate(54deg);
+  -moz-transform: rotate(54deg);
+  -o-transform: rotate(54deg);
+  -ms-transform: rotate(54deg);
+  transform: rotate(54deg);
+}
+#flower .child:nth-child(3) .leaf {
+  background-color: #00bd00;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
+  opacity: 0.84;
+  filter: alpha(opacity=84);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
+}
+#flower .child:nth-child(3) .leaf .glass-holder {
+  height: 100%;
+  -webkit-transform: rotate(-54deg);
+  -moz-transform: rotate(-54deg);
+  -o-transform: rotate(-54deg);
+  -ms-transform: rotate(-54deg);
+  transform: rotate(-54deg);
+}
+#flower .child:nth-child(4) {
+  -webkit-transform: rotate(126deg);
+  -moz-transform: rotate(126deg);
+  -o-transform: rotate(126deg);
+  -ms-transform: rotate(126deg);
+  transform: rotate(126deg);
+}
+#flower .child:nth-child(4) .leaf {
+  background-color: #ff0;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
+  opacity: 0.84;
+  filter: alpha(opacity=84);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
+}
+#flower .child:nth-child(4) .leaf .glass-holder {
+  height: 100%;
+  -webkit-transform: rotate(-126deg);
+  -moz-transform: rotate(-126deg);
+  -o-transform: rotate(-126deg);
+  -ms-transform: rotate(-126deg);
+  transform: rotate(-126deg);
+}
+#flower .child:nth-child(5) {
+  -webkit-transform: rotate(198deg);
+  -moz-transform: rotate(198deg);
+  -o-transform: rotate(198deg);
+  -ms-transform: rotate(198deg);
+  transform: rotate(198deg);
+}
+#flower .child:nth-child(5) .leaf {
+  background-color: #ebe8e8;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
+  opacity: 0.84;
+  filter: alpha(opacity=84);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
+}
+#flower .child:nth-child(5) .leaf .glass-holder {
+  height: 100%;
+  -webkit-transform: rotate(-198deg);
+  -moz-transform: rotate(-198deg);
+  -o-transform: rotate(-198deg);
+  -ms-transform: rotate(-198deg);
+  transform: rotate(-198deg);
+}
+#flower .glass {
+  height: 100%;
+  background-image: url("../gfx/glass.png");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
+}
+#flower:hover {
+  -webkit-transform: scale(3.4);
+  -moz-transform: scale(3.4);
+  -o-transform: scale(3.4);
+  -ms-transform: scale(3.4);
+  transform: scale(3.4);
+}
+#flower:hover .inner {
+  -webkit-transform: scale(0.29411764705882354);
+  -moz-transform: scale(0.29411764705882354);
+  -o-transform: scale(0.29411764705882354);
+  -ms-transform: scale(0.29411764705882354);
+  transform: scale(0.29411764705882354);
+}
+#flower:hover .child .leaf {
+  -webkit-animation: expand 3.2s 1 ease-in-out;
+  -moz-animation: expand 3.2s 1 ease-in-out;
+  -o-animation: expand 3.2s 1 ease-in-out;
+  -ms-animation: expand 3.2s 1 ease-in-out;
+  animation: expand 3.2s 1 ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-transition: box-shadow 0.16s ease-in-out;
+  -moz-transition: box-shadow 0.16s ease-in-out;
+  -o-transition: box-shadow 0.16s ease-in-out;
+  -ms-transition: box-shadow 0.16s ease-in-out;
+  transition: box-shadow 0.16s ease-in-out;
+}
+#flower:hover .child .leaf:hover {
+  -webkit-box-shadow: 0 0 34px #d3d9ff, 0 0 0 1px #000, inset 0 1px 0 rgba(255,255,255,0.2);
+  box-shadow: 0 0 34px #d3d9ff, 0 0 0 1px #000, inset 0 1px 0 rgba(255,255,255,0.2);
+}
+#flower:hover .child .leaf .glass {
+  -webkit-animation: cover-stationary 3.2s 1 ease-in-out;
+  -moz-animation: cover-stationary 3.2s 1 ease-in-out;
+  -o-animation: cover-stationary 3.2s 1 ease-in-out;
+  -ms-animation: cover-stationary 3.2s 1 ease-in-out;
+  animation: cover-stationary 3.2s 1 ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+@-moz-keyframes expand {
+  100% {
+    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  }
+}
+@-webkit-keyframes expand {
+  100% {
+    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  }
+}
+@-o-keyframes expand {
+  100% {
+    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  }
+}
+@-ms-keyframes expand {
+  100% {
+    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  }
+}
+@keyframes expand {
+  100% {
+    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+    transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  }
+}
+@-moz-keyframes cover-stationary {
+  100% {
+    -webkit-transform: rotate(-1890deg);
+    -moz-transform: rotate(-1890deg);
+    -o-transform: rotate(-1890deg);
+    -ms-transform: rotate(-1890deg);
+    transform: rotate(-1890deg);
+  }
+}
+@-webkit-keyframes cover-stationary {
+  100% {
+    -webkit-transform: rotate(-1890deg);
+    -moz-transform: rotate(-1890deg);
+    -o-transform: rotate(-1890deg);
+    -ms-transform: rotate(-1890deg);
+    transform: rotate(-1890deg);
+  }
+}
+@-o-keyframes cover-stationary {
+  100% {
+    -webkit-transform: rotate(-1890deg);
+    -moz-transform: rotate(-1890deg);
+    -o-transform: rotate(-1890deg);
+    -ms-transform: rotate(-1890deg);
+    transform: rotate(-1890deg);
+  }
+}
+@-ms-keyframes cover-stationary {
+  100% {
+    -webkit-transform: rotate(-1890deg);
+    -moz-transform: rotate(-1890deg);
+    -o-transform: rotate(-1890deg);
+    -ms-transform: rotate(-1890deg);
+    transform: rotate(-1890deg);
+  }
+}
+@keyframes cover-stationary {
+  100% {
+    -webkit-transform: rotate(-1890deg);
+    -moz-transform: rotate(-1890deg);
+    -o-transform: rotate(-1890deg);
+    -ms-transform: rotate(-1890deg);
+    transform: rotate(-1890deg);
+  }
+}
