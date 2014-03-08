@@ -10,6 +10,7 @@ distance = 1.2 // 1 = flush
 twirls = 3
 swirl = 720deg // 0 = first leaf at the top; goes clockwise
 time = 3.2s
+spincycle = 45s
 colors = #3535e0, red, #00bd00, yellow, #ebe8e8
 
 // auto
@@ -21,7 +22,7 @@ grow = 1 + (2 * distance)
   height diameter
   border-radius 100%
   cursor pointer
-  .inner
+  .spinner, .inner, .counterspin
     height 100%
   .child
     width diameter
@@ -65,6 +66,8 @@ grow = 1 + (2 * distance)
     transform scale(grow) // zoom click area
     .inner
       transform scale(1 / grow) // but do not zoom internals
+    .spinner
+      animation spin spincycle infinite linear
     .child .leaf
       animation expand time 1 ease-in-out
       animation-fill-mode forwards
@@ -74,6 +77,14 @@ grow = 1 + (2 * distance)
       .glass
         animation cover-stationary time 1 ease-in-out
         animation-fill-mode forwards
+    .cover, .counterspin
+      animation counter-spin spincycle infinite linear
+@keyframes spin
+  to
+    transform rotate(1turn)
+@keyframes counter-spin
+  to
+    transform rotate(-1turn)
 @keyframes expand
   to
     transform rotate(swirl) translateX(diameter * distance) rotate((twirls * 360 + 90)deg)
