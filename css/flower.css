@@ -13,6 +13,21 @@
 #flower .counterspin {
   height: 100%;
 }
+#flower .spinner {
+  -webkit-animation: spin 45s infinite linear;
+  -moz-animation: spin 45s infinite linear;
+  -o-animation: spin 45s infinite linear;
+  -ms-animation: spin 45s infinite linear;
+  animation: spin 45s infinite linear;
+}
+#flower .cover,
+#flower .counterspin {
+  -webkit-animation: counter-spin 45s infinite linear;
+  -moz-animation: counter-spin 45s infinite linear;
+  -o-animation: counter-spin 45s infinite linear;
+  -ms-animation: counter-spin 45s infinite linear;
+  animation: counter-spin 45s infinite linear;
+}
 #flower .child {
   width: 120px;
   height: 120px;
@@ -38,6 +53,11 @@
   color: #fff;
   -webkit-border-radius: 100%;
   border-radius: 100%;
+  -webkit-transition: -webkit-transform 3.2s ease-in-out;
+  -moz-transition: -moz-transform 3.2s ease-in-out;
+  -o-transition: -o-transform 3.2s ease-in-out;
+  -ms-transition: -ms-transform 3.2s ease-in-out;
+  transition: transform 3.2s ease-in-out;
 }
 #flower .child .leaf img {
   width: 64px;
@@ -172,6 +192,11 @@
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   background-size: 100%;
+  -webkit-transition: -webkit-transform 3.2s ease-in-out;
+  -moz-transition: -moz-transform 3.2s ease-in-out;
+  -o-transition: -o-transform 3.2s ease-in-out;
+  -ms-transition: -ms-transform 3.2s ease-in-out;
+  transition: transform 3.2s ease-in-out;
 }
 #flower:hover {
   -webkit-transform: scale(3.4);
@@ -187,53 +212,28 @@
   -ms-transform: scale(0.29411764705882354);
   transform: scale(0.29411764705882354);
 }
-#flower:hover .spinner {
-  -webkit-animation: spin 45s infinite linear;
-  -moz-animation: spin 45s infinite linear;
-  -o-animation: spin 45s infinite linear;
-  -ms-animation: spin 45s infinite linear;
-  animation: spin 45s infinite linear;
+#flower:hover .leaf {
+  -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  transform: rotate(720deg) translateX(144px) rotate(1170deg);
+  -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
+  -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
+  -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
+  -ms-transition: -ms-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
+  transition: transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
 }
-#flower:hover .child .leaf {
-  -webkit-animation: expand 3.2s 1 ease-in-out;
-  -moz-animation: expand 3.2s 1 ease-in-out;
-  -o-animation: expand 3.2s 1 ease-in-out;
-  -ms-animation: expand 3.2s 1 ease-in-out;
-  animation: expand 3.2s 1 ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
-  -ms-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-transition: box-shadow 0.16s ease-in-out;
-  -moz-transition: box-shadow 0.16s ease-in-out;
-  -o-transition: box-shadow 0.16s ease-in-out;
-  -ms-transition: box-shadow 0.16s ease-in-out;
-  transition: box-shadow 0.16s ease-in-out;
-}
-#flower:hover .child .leaf:hover {
+#flower:hover .leaf:hover {
   -webkit-box-shadow: 0 0 34px #d3d9ff, 0 0 0 1px #000, inset 0 1px 0 rgba(255,255,255,0.2);
   box-shadow: 0 0 34px #d3d9ff, 0 0 0 1px #000, inset 0 1px 0 rgba(255,255,255,0.2);
 }
-#flower:hover .child .leaf .glass {
-  -webkit-animation: cover-stationary 3.2s 1 ease-in-out;
-  -moz-animation: cover-stationary 3.2s 1 ease-in-out;
-  -o-animation: cover-stationary 3.2s 1 ease-in-out;
-  -ms-animation: cover-stationary 3.2s 1 ease-in-out;
-  animation: cover-stationary 3.2s 1 ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
-  -ms-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-#flower:hover .cover,
-#flower:hover .counterspin {
-  -webkit-animation: counter-spin 45s infinite linear;
-  -moz-animation: counter-spin 45s infinite linear;
-  -o-animation: counter-spin 45s infinite linear;
-  -ms-animation: counter-spin 45s infinite linear;
-  animation: counter-spin 45s infinite linear;
+#flower:hover .leaf .glass {
+  -webkit-transform: rotate(-1890deg);
+  -moz-transform: rotate(-1890deg);
+  -o-transform: rotate(-1890deg);
+  -ms-transform: rotate(-1890deg);
+  transform: rotate(-1890deg);
 }
 @-moz-keyframes spin {
   100% {
@@ -323,95 +323,5 @@
     -o-transform: rotate(-1turn);
     -ms-transform: rotate(-1turn);
     transform: rotate(-1turn);
-  }
-}
-@-moz-keyframes expand {
-  100% {
-    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    transform: rotate(720deg) translateX(144px) rotate(1170deg);
-  }
-}
-@-webkit-keyframes expand {
-  100% {
-    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    transform: rotate(720deg) translateX(144px) rotate(1170deg);
-  }
-}
-@-o-keyframes expand {
-  100% {
-    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    transform: rotate(720deg) translateX(144px) rotate(1170deg);
-  }
-}
-@-ms-keyframes expand {
-  100% {
-    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    transform: rotate(720deg) translateX(144px) rotate(1170deg);
-  }
-}
-@keyframes expand {
-  100% {
-    -webkit-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -moz-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -o-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    -ms-transform: rotate(720deg) translateX(144px) rotate(1170deg);
-    transform: rotate(720deg) translateX(144px) rotate(1170deg);
-  }
-}
-@-moz-keyframes cover-stationary {
-  100% {
-    -webkit-transform: rotate(-1890deg);
-    -moz-transform: rotate(-1890deg);
-    -o-transform: rotate(-1890deg);
-    -ms-transform: rotate(-1890deg);
-    transform: rotate(-1890deg);
-  }
-}
-@-webkit-keyframes cover-stationary {
-  100% {
-    -webkit-transform: rotate(-1890deg);
-    -moz-transform: rotate(-1890deg);
-    -o-transform: rotate(-1890deg);
-    -ms-transform: rotate(-1890deg);
-    transform: rotate(-1890deg);
-  }
-}
-@-o-keyframes cover-stationary {
-  100% {
-    -webkit-transform: rotate(-1890deg);
-    -moz-transform: rotate(-1890deg);
-    -o-transform: rotate(-1890deg);
-    -ms-transform: rotate(-1890deg);
-    transform: rotate(-1890deg);
-  }
-}
-@-ms-keyframes cover-stationary {
-  100% {
-    -webkit-transform: rotate(-1890deg);
-    -moz-transform: rotate(-1890deg);
-    -o-transform: rotate(-1890deg);
-    -ms-transform: rotate(-1890deg);
-    transform: rotate(-1890deg);
-  }
-}
-@keyframes cover-stationary {
-  100% {
-    -webkit-transform: rotate(-1890deg);
-    -moz-transform: rotate(-1890deg);
-    -o-transform: rotate(-1890deg);
-    -ms-transform: rotate(-1890deg);
-    transform: rotate(-1890deg);
   }
 }

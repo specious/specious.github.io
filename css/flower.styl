@@ -24,6 +24,10 @@ grow = 1 + (2 * distance)
   cursor pointer
   .spinner, .inner, .counterspin
     height 100%
+  .spinner
+    animation spin spincycle infinite linear
+  .cover, .counterspin
+    animation counter-spin spincycle infinite linear
   .child
     width diameter
     height diameter
@@ -41,6 +45,7 @@ grow = 1 + (2 * distance)
       height 100%
       color white
       border-radius 100%
+      transition transform time ease-in-out
       img
         width 64px
         height 64px
@@ -62,32 +67,23 @@ grow = 1 + (2 * distance)
     height 100%
     background-image url('../gfx/glass.png')
     background-size 100%
+    transition transform time ease-in-out
   &:hover
     transform scale(grow) // zoom click area
     .inner
       transform scale(1 / grow) // but do not zoom internals
-    .spinner
-      animation spin spincycle infinite linear
-    .child .leaf
-      animation expand time 1 ease-in-out
-      animation-fill-mode forwards
-      transition box-shadow 0.16s ease-in-out
+    .leaf
+      // Expand
+      transform rotate(swirl) translateX(diameter * distance) rotate((twirls * 360 + 90)deg)
+      transition transform time ease-in-out, box-shadow 0.16s ease-in-out
       &:hover
         box-shadow 0 0 34px rgba(211, 217, 255, 1), 0 0 0 1px black, inset 0 1px 0 rgba(255, 255, 255, 0.2)
       .glass
-        animation cover-stationary time 1 ease-in-out
-        animation-fill-mode forwards
-    .cover, .counterspin
-      animation counter-spin spincycle infinite linear
+        // Keep the glass cover stationary
+        transform rotate((-1 * (swirl + twirls * 360 + 90))deg)
 @keyframes spin
   to
     transform rotate(1turn)
 @keyframes counter-spin
   to
     transform rotate(-1turn)
-@keyframes expand
-  to
-    transform rotate(swirl) translateX(diameter * distance) rotate((twirls * 360 + 90)deg)
-@keyframes cover-stationary
-  to
-    transform rotate((-1 * (swirl + twirls * 360 + 90))deg)
