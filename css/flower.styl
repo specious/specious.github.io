@@ -7,7 +7,7 @@
 count = 5
 diameter = 120px
 distance = 1.2 // 1 = flush
-twirls = 3
+tumbles = 3
 swirl = 720deg // 0 = first leaf at the top; goes clockwise
 time = 3.2s
 spincycle = 45s
@@ -74,13 +74,13 @@ grow = 1 + (2 * distance)
       transform scale(1 / grow) // but do not zoom internals
     .leaf
       // Expand
-      transform rotate(swirl) translateX(diameter * distance) rotate((twirls * 360 + 90)deg)
+      transform rotate(swirl) translateX(diameter * distance) rotate((tumbles * 360 + 90)deg)
       transition transform time ease-in-out, box-shadow 0.16s ease-in-out
       &:hover
         box-shadow 0 0 34px rgba(211, 217, 255, 1), 0 0 0 1px black, inset 0 1px 0 rgba(255, 255, 255, 0.2)
       .glass
         // Keep the glass cover stationary
-        transform rotate((-1 * (swirl + twirls * 360 + 90))deg)
+        transform rotate((-1 * (swirl + tumbles * 360 + 90))deg)
 @keyframes spin
   to
     transform rotate(1turn)
