@@ -48,6 +48,7 @@ grow = 1 + (2 * distance)
       height 100%
       color white
       border-radius 50%
+      visibility hidden
       transition transform time ease-in-out
       img
         width 64px
@@ -63,6 +64,7 @@ grow = 1 + (2 * distance)
           background-color c
           background-size 100%
           opacity 0.84
+          transition transform time ease-in-out, box-shadow 0.16s ease-in-out, visibility time linear
           .glass-holder
             height 100%
             transform rotate(-(rot)deg)
@@ -74,11 +76,11 @@ grow = 1 + (2 * distance)
   &:hover
     transform scale(grow) // zoom click area
     .inner
-      transform scale(1 / grow) // but do not zoom internals
+      transform scale(1 / grow) // but do not zoom internal elements
     .leaf
       // Expand
+      visibility visible
       transform rotate(swirl) translateX(diameter * distance) rotate((tumbles * 360 + 90)deg)
-      transition transform time ease-in-out, box-shadow 0.16s ease-in-out
       &:hover
         box-shadow 0 0 34px rgba(211, 217, 255, 1), 0 0 0 1px black, inset 0 1px 0 rgba(255, 255, 255, 0.2)
       .glass
