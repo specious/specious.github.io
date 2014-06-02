@@ -2,7 +2,7 @@ doctype html
 
 mixin leaf(link, image, title)
   .child
-    a(href=link)
+    a(href=link, target="_blank")
       .leaf
         img(src='gfx/icons/' + image + '.png', alt=title)
         .glass-holder
@@ -10,7 +10,7 @@ mixin leaf(link, image, title)
             .glass
 
 html(lang='en')
-  // By Ildar Sagdejev ( http://twitter.com/tknomad )
+  // By Ildar Sagdejev ( http://twitter.com/tknomad ) 
   head
     meta(charset='UTF-8')
     title Ildar Sagdejev: Web ninja
@@ -18,14 +18,20 @@ html(lang='en')
     link(rel='stylesheet', href='css/main.css')
   body
     h1 Ildar Sagdejev
-    h2 web ninja
-    #flower
-      .inner
-        .spinner
-          +leaf('http://fb.me/tknomad', 'fb', 'Facebook')
-          +leaf('http://twitter.com/tknomad', 'bird', 'Twitter')
-          +leaf('http://www.flickr.com/photos/the-specious', 'camera', 'Photography')
-          +leaf('http://github.com/specious', 'octocat', 'GitHub')
-          +leaf('http://www.pandora.com/profile/stations/specious6', 'pandora', 'Pandora')
-          .child
-            .cover
+    #bio
+      p
+        | I’m <strong>Ildar Sagdejev</strong>, a full stack web developer with expertise in <span class="term">JavaScript</span>, <span class="term">CSS</span> and <span class="term">WebGL</span>.&nbsp; I create visually astounding experiences.
+      p
+        | When not working for clients, I enjoy listening to world music, having adventures and contributing to open source projects.&nbsp; In the past, I programmed LC/MS instruments as a software engineer at <a href="http://www.leaptec.com">LEAP Technologies</a>.&nbsp; More recently, I programmed a line of casino games including virtual slot machines, video poker, bingo and keno.
+      p
+        | Have a look at my <a href="http://www.tknomad.com">portfolio</a>.
+    #spinner
+      .flower
+        .inner
+          .spinner
+            +leaf('http://fb.me/tknomad', 'fb', 'Facebook')
+            +leaf('http://twitter.com/tknomad', 'bird', 'Twitter')
+            +leaf('http://www.flickr.com/photos/the-specious', 'camera', 'Photography')
+            +leaf('http://github.com/specious', 'octocat', 'GitHub')
+            +leaf('http://www.pandora.com/profile/stations/specious6', 'pandora', 'Pandora')
+          .cover

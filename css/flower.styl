@@ -17,34 +17,37 @@ colors = #3535e0, red, #00bd00, yellow, #ebe8e8
 dAngle = 360 / count
 grow = 1 + (2 * distance)
 
-#flower
+.flower
   width diameter
   height diameter
-  border-radius 100%
+  border-radius 50%
   cursor pointer
+  position relative
   .spinner, .inner, .counterspin
     height 100%
   .spinner
     animation spin spincycle infinite linear
-  .cover, .counterspin
+  .counterspin
     animation counter-spin spincycle infinite linear
+  .cover
+    width diameter
+    height diameter
+    background-image url(../gfx/cover.jpg)
+    background-size 100%
+    border-radius 50%
+    box-shadow 0 0 2px 4px #d1d1d1
+    position absolute
+    top 0
   .child
     width diameter
     height diameter
-    border-radius 100%
+    border-radius 50%
     position absolute
-    left 0
     top 0
-    .cover
-      height 100%
-      background-image url(../gfx/cover.jpg)
-      background-size 100%
-      border-radius 100%
-      box-shadow 0 0 2px 4px #d1d1d1
     .leaf
       height 100%
       color white
-      border-radius 100%
+      border-radius 50%
       transition transform time ease-in-out
       img
         width 64px
