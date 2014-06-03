@@ -1,14 +1,10 @@
 @font-face {
   font-family: Airstream;
-  font-weight: normal;
-  font-style: normal;
-  src: url("../fonts/airstream.ttf") format('truetype');
+  src: url("../fonts/airstream.woff") format('woff'), url("../fonts/airstream.ttf") format('truetype');
 }
 @font-face {
   font-family: Oswald;
-  font-weight: normal;
-  font-style: normal;
-  src: url("../fonts/oswald.otf") format('opentype');
+  src: url("../fonts/oswald.woff") format('woff'), url("../fonts/oswald.otf") format('opentype');
 }
 body {
   color: #fff;
