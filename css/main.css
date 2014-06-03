@@ -1,7 +1,23 @@
-@import url("http://fonts.googleapis.com/css?family=Oswald");
+@font-face {
+  font-family: Airstream;
+  font-weight: normal;
+  font-style: normal;
+  src: url("../fonts/airstream.ttf") format('truetype');
+}
+@font-face {
+  font-family: Oswald;
+  font-weight: normal;
+  font-style: normal;
+  src: url("../fonts/oswald.otf") format('opentype');
+}
 body {
   color: #fff;
   background-color: #000;
+  background: radial-gradient(#000 15%, transparent 16%) 0 0, radial-gradient(#000 15%, transparent 16%) 8px 8px, radial-gradient(rgba(255,255,255,0.1) 15%, transparent 20%) 0 1px, radial-gradient(rgba(255,255,255,0.1) 15%, transparent 20%) 8px 9px;
+  background-color: #251f3b;
+  -webkit-background-size: 16px 16px;
+  -moz-background-size: 16px 16px;
+  background-size: 16px 16px;
   text-align: center;
 }
 a {
@@ -10,22 +26,31 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #add8e6;
+  color: #7c75f3;
+}
+#content {
+  overflow: hidden;
 }
 h1 {
-  font-family: helvetica, sans-serif;
-  color: #c40c0c;
-  font-size: 97px;
-  text-shadow: 0 2px 1px #f6f6f6, 0 3px 0 #efefef, 0 4px 0 #e9e9e9, 0 5px 0 #e3e3e3;
+  font-family: Airstream;
+  font-size: 107px;
+  text-shadow: 2px 2px 9px #000;
   text-align: center;
   margin: 0;
-  margin-top: 20px;
+  margin-top: 9px;
+  -webkit-animation: hues 8s infinite linear;
+  -moz-animation: hues 8s infinite linear;
+  -o-animation: hues 8s infinite linear;
+  -ms-animation: hues 8s infinite linear;
+  animation: hues 8s infinite linear;
 }
 #bio {
   font-family: Oswald;
   font-size: 1.2em;
-  padding: 1em;
+  text-shadow: 1px 1px 2px #000;
   max-width: 25em;
+  padding: 1em;
+  margin-top: 1em;
   display: inline-block;
 }
 #bio strong {
@@ -33,18 +58,92 @@ h1 {
 }
 #bio .term {
   color: #be2cd4;
+  cursor: default;
+  -webkit-transition: text-shadow 0.15s linear;
+  -moz-transition: text-shadow 0.15s linear;
+  -o-transition: text-shadow 0.15s linear;
+  -ms-transition: text-shadow 0.15s linear;
+  transition: text-shadow 0.15s linear;
 }
-#spinner {
-  width: 448px;
-  height: 448px;
+#bio .term:hover {
+  text-shadow: 0 0 4px #be2cd4;
+}
+#disc {
+  width: 460px;
+  height: 460px;
+  border: 1px rgba(41,40,40,0.81) solid;
+  background-color: rgba(6,13,23,0.4);
+  -webkit-box-shadow: 1px 1px 12px 4px rgba(0,0,0,0.6);
+  box-shadow: 1px 1px 12px 4px rgba(0,0,0,0.6);
   -webkit-border-radius: 50%;
   border-radius: 50%;
   vertical-align: top;
+  margin: 0.9em auto;
   display: inline-block;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
+}
+#disc:after {
+  width: 100%;
+  height: 100%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-color: rgba(255,0,0,0.1);
+  background-image: linear-gradient(-35deg, rgba(255,255,255,0.2) 20%, transparent 25%, transparent 45%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 70%, transparent 75%, transparent);
+  opacity: 0.15;
+  filter: alpha(opacity=15);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=15)";
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  content: '';
 }
 .flower {
   position: relative;
-  top: 164px;
+  top: 170px;
   display: inline-block;
+}
+@-moz-keyframes hues {
+  from {
+    color: #ff5252;
+  }
+  50% {
+    color: #7d52ff;
+  }
+  to {
+    color: #ff5252;
+  }
+}
+@-webkit-keyframes hues {
+  from {
+    color: #ff5252;
+  }
+  50% {
+    color: #7d52ff;
+  }
+  to {
+    color: #ff5252;
+  }
+}
+@-o-keyframes hues {
+  from {
+    color: #ff5252;
+  }
+  50% {
+    color: #7d52ff;
+  }
+  to {
+    color: #ff5252;
+  }
+}
+@keyframes hues {
+  from {
+    color: #ff5252;
+  }
+  50% {
+    color: #7d52ff;
+  }
+  to {
+    color: #ff5252;
+  }
 }

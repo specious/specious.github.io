@@ -1,50 +1,102 @@
 @import 'nib/vendor'
 
-@import url(http://fonts.googleapis.com/css?family=Oswald)
+@font-face
+  // source: http://www.fontsquirrel.com/fonts/airstream
+  font-family Airstream
+  font-weight normal
+  font-style normal
+  src url('../fonts/airstream.ttf') format('truetype')
+
+@font-face
+  // source: http://www.fontsquirrel.com/fonts/oswald
+  font-family Oswald
+  font-weight normal
+  font-style normal
+  src url('../fonts/oswald.otf') format('opentype')
 
 // Calculations to contain the spinner inside a fixed sized element
 // with { overflow: hidden } to prevent page scroll bars from going wild
 diameter = 120px // same as in flower.styl
 distance = 1.2   // same as in flower.styl
-allowance = 40px // allowance for bubbles glowing
+allowance = 52px // allowance for bubbles glowing
 span = diameter * (1 + 2 * distance) + allowance
 
 body
   color white
   background-color black
+  // Texture from: http://lea.verou.me/css3patterns/#carbon-fibre
+  background \
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px
+  background-color rgba(37, 31, 59, 1)
+  background-size 16px 16px
   text-align center
 a
   color yellow
   outline 0
   text-decoration none
   &:hover
-    color lightblue
+    color #7c75f3
+#content
+  overflow hidden
 h1
-  font-family helvetica, sans-serif
-  color #c40c0c
-  font-size 97px
-  text-shadow 0 2px 1px #f6f6f6, 0 3px 0 #efefef, 0 4px 0 #e9e9e9, 0 5px 0 #e3e3e3
+  font-family Airstream
+  font-size 107px
+  text-shadow 2px 2px 9px black
   text-align center
   margin 0
-  margin-top 20px
+  margin-top 9px
+  animation hues 8s infinite linear
 #bio
   font-family Oswald
   font-size 1.2em
-  padding 1em
+  text-shadow 1px 1px 2px black
   max-width 25em
+  padding 1em
+  margin-top 1em
   display inline-block
   strong
     color #d55024
   .term
     color #be2cd4
-#spinner
+    cursor default
+    transition text-shadow 0.15s linear
+    &:hover
+      text-shadow 0 0 4px #be2cd4
+#disc
   width span
   height span
+  border 1px rgba(41, 40, 40, 0.81) solid
+  background-color rgba(6, 13, 23, 0.4)
+  box-shadow 1px 1px 12px 4px rgba(0, 0, 0, 0.6)
   border-radius 50%
   vertical-align top
+  margin 0.9em auto
   display inline-block
-  overflow hidden
+  overflow visible
+  position relative
+  &:after
+    width 100%
+    height 100%
+    border-radius 50%
+    background-color rgba(255,0,0,0.1)
+    background-image linear-gradient(-35deg, rgba(255, 255, 255, .2) 20%, transparent 25%, transparent 45%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 70%, transparent 75%, transparent)
+    opacity 0.15
+    pointer-events none
+    position absolute
+    left 0
+    content ''
 .flower
   position relative
   top ((span - diameter) / 2)
   display inline-block
+
+@keyframes hues
+  from
+    color hsl(0, 100%, 66%)
+  50%
+    color hsl(255, 100%, 66%)
+  to
+    color hsl(0, 100%, 66%)
