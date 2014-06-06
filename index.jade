@@ -36,3 +36,7 @@ html(lang='en')
               +leaf('http://github.com/specious', 'octocat', 'GitHub')
               +leaf('http://www.pandora.com/profile/stations/specious6', 'pandora', 'Pandora')
             .cover
+    script.
+      // Open spinner automatically on iOS Safari because :hover is not properly activated
+      if( navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/) )
+        document.getElementById('disc').children[0].className += " open"

@@ -46,11 +46,11 @@ grow = 1 + (2 * distance)
     border-radius 50%
     position absolute
     top 0
+    visibility hidden
     .leaf
       height 100%
       color white
       border-radius 50%
-      visibility hidden
       transition transform time ease-in-out
       img
         width 64px
@@ -62,11 +62,12 @@ grow = 1 + (2 * distance)
       &:nth-child({i+1})
         rot = (dAngle * i - 90)
         transform rotate((rot)deg)
+        transition visibility time linear
         .leaf
           background-color c
           background-size 100%
           opacity 0.84
-          transition transform time ease-in-out, box-shadow 0.16s ease-in-out, visibility time linear
+          transition transform time ease-in-out, box-shadow 0.16s ease-in-out
           .glass-holder
             height 100%
             transform rotate(-(rot)deg)
@@ -75,13 +76,14 @@ grow = 1 + (2 * distance)
     background-image url('../gfx/glass.png')
     background-size 100%
     transition transform time ease-in-out
-  &:hover
+  &:hover, &.open
     transform scale(grow) // zoom click area
     .inner
       transform scale(1 / grow) // but do not zoom internal elements
+    .child
+      visibility visible
     .leaf
       // Expand
-      visibility visible
       transform rotate(swirl) translateX(diameter * distance) rotate((tumbles * 360 + 90)deg)
       &:hover
         box-shadow 0 0 34px rgba(211, 217, 255, 1), 0 0 0 1px black, inset 0 1px 0 rgba(255, 255, 255, 0.2)
