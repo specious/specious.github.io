@@ -95,6 +95,10 @@ h1 {
   content: '';
 }
 .flower {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   position: relative;
   top: 170px;
   display: inline-block;
