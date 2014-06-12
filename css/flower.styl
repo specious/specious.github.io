@@ -6,12 +6,13 @@
 
 count = 5
 diameter = 120px
+icon_size = 80px
 distance = 1.2 // 1 = flush
 tumbles = 3
 swirl = 720deg // 0 = first leaf at the top; goes clockwise
 time = 3.2s
 spincycle = 45s
-colors = #3535e0, red, #00bd00, yellow, #ebe8e8
+colors = #3535e0, red, #08ce18, yellow, #cb56ff
 
 // auto
 dAngle = 360 / count
@@ -53,10 +54,10 @@ grow = 1 + (2 * distance)
       border-radius 50%
       transition transform time ease-in-out
       img
-        width 64px
-        height 64px
-        left 28px
-        top 28px
+        width icon_size
+        height icon_size
+        left ((diameter - icon_size) / 2)
+        top ((diameter - icon_size) / 2)
         position absolute
     for c, i in colors
       &:nth-child({i+1})

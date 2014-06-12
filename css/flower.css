@@ -63,10 +63,10 @@
   transition: transform 3.2s ease-in-out;
 }
 .flower .child .leaf img {
-  width: 64px;
-  height: 64px;
-  left: 28px;
-  top: 28px;
+  width: 80px;
+  height: 80px;
+  left: 20px;
+  top: 20px;
   position: absolute;
 }
 .flower .child:nth-child(1) {
@@ -150,7 +150,7 @@
   transition: visibility 3.2s linear;
 }
 .flower .child:nth-child(3) .leaf {
-  background-color: #00bd00;
+  background-color: #08ce18;
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   background-size: 100%;
@@ -218,7 +218,7 @@
   transition: visibility 3.2s linear;
 }
 .flower .child:nth-child(5) .leaf {
-  background-color: #ebe8e8;
+  background-color: #cb56ff;
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   background-size: 100%;
