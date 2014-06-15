@@ -1,5 +1,5 @@
 /*
- * CSS Flower - By Ildar Sagdejev ( http://twitter.com/tknomad )
+ * CSS Flower - By Ildar Sagdejev ( http://j.mp/web-ninja )
  */
 .flower {
   width: 120px;
@@ -12,7 +12,8 @@
 }
 .flower .spinner,
 .flower .inner,
-.flower .counterspin {
+.flower .counterspin,
+.flower .glass-holder {
   height: 100%;
 }
 .flower .spinner {
@@ -57,9 +58,15 @@
 .flower .child .leaf {
   height: 100%;
   color: #fff;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+  opacity: 0.84;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
+  filter: alpha(opacity=84);
   -webkit-transition: -webkit-transform 3.2s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out;
@@ -87,12 +94,6 @@
 }
 .flower .child:nth-child(1) .leaf {
   background-color: #3535e0;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  background-size: 100%;
-  opacity: 0.84;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
-  filter: alpha(opacity=84);
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
@@ -100,7 +101,6 @@
   transition: transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
 }
 .flower .child:nth-child(1) .leaf .glass-holder {
-  height: 100%;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   -o-transform: rotate(90deg);
@@ -121,12 +121,6 @@
 }
 .flower .child:nth-child(2) .leaf {
   background-color: #f00;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  background-size: 100%;
-  opacity: 0.84;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
-  filter: alpha(opacity=84);
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
@@ -134,7 +128,6 @@
   transition: transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
 }
 .flower .child:nth-child(2) .leaf .glass-holder {
-  height: 100%;
   -webkit-transform: rotate(18deg);
   -moz-transform: rotate(18deg);
   -o-transform: rotate(18deg);
@@ -155,12 +148,6 @@
 }
 .flower .child:nth-child(3) .leaf {
   background-color: #08ce18;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  background-size: 100%;
-  opacity: 0.84;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
-  filter: alpha(opacity=84);
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
@@ -168,7 +155,6 @@
   transition: transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
 }
 .flower .child:nth-child(3) .leaf .glass-holder {
-  height: 100%;
   -webkit-transform: rotate(-54deg);
   -moz-transform: rotate(-54deg);
   -o-transform: rotate(-54deg);
@@ -189,12 +175,6 @@
 }
 .flower .child:nth-child(4) .leaf {
   background-color: #ff0;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  background-size: 100%;
-  opacity: 0.84;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
-  filter: alpha(opacity=84);
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
@@ -202,7 +182,6 @@
   transition: transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
 }
 .flower .child:nth-child(4) .leaf .glass-holder {
-  height: 100%;
   -webkit-transform: rotate(-126deg);
   -moz-transform: rotate(-126deg);
   -o-transform: rotate(-126deg);
@@ -223,12 +202,6 @@
 }
 .flower .child:nth-child(5) .leaf {
   background-color: #cb56ff;
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  background-size: 100%;
-  opacity: 0.84;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
-  filter: alpha(opacity=84);
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
@@ -236,7 +209,6 @@
   transition: transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
 }
 .flower .child:nth-child(5) .leaf .glass-holder {
-  height: 100%;
   -webkit-transform: rotate(-198deg);
   -moz-transform: rotate(-198deg);
   -o-transform: rotate(-198deg);
