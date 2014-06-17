@@ -4,7 +4,7 @@ mixin leaf(link, image, title)
   .child
     a(href=link, target="_blank")
       .leaf
-        img(src='gfx/icons/' + image + '.png', alt=title)
+        img(src='gfx/icons/' + image, alt=title)
         .glass-holder
           .counterspin
             .glass
@@ -27,14 +27,12 @@ html(lang='en')
         p
           | Have a look at my <a href="http://www.tknomad.com">portfolio</a>.
       #disc
-        .flower
+        .flower.open
           .inner
             .spinner
-              +leaf('http://fb.me/tknomad', 'fb', 'Facebook')
-              +leaf('http://twitter.com/tknomad', 'bird', 'Twitter')
-              +leaf('http://www.flickr.com/photos/the-specious', 'camera', 'Photography')
-              +leaf('http://github.com/specious', 'octocat', 'GitHub')
-              +leaf('http://codepen.io/tknomad', 'codepen', 'CodePen')
+              include links
+              each link in links
+                +leaf(link['url'], link['icon'], link['title'])
             .cover
     script.
       //

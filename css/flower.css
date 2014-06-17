@@ -64,9 +64,9 @@
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  opacity: 0.84;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=84)";
-  filter: alpha(opacity=84);
+  opacity: 0.94;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=94)";
+  filter: alpha(opacity=94);
   -webkit-transition: -webkit-transform 3.2s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out;
@@ -93,7 +93,7 @@
   transition: visibility 3.2s linear;
 }
 .flower .child:nth-child(1) .leaf {
-  background-color: #3535e0;
+  background-color: #8a1919;
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
@@ -120,7 +120,7 @@
   transition: visibility 3.2s linear;
 }
 .flower .child:nth-child(2) .leaf {
-  background-color: #f00;
+  background-color: #dce9f6;
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
@@ -147,7 +147,7 @@
   transition: visibility 3.2s linear;
 }
 .flower .child:nth-child(3) .leaf {
-  background-color: #08ce18;
+  background-color: #2b44cf;
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
@@ -174,7 +174,7 @@
   transition: visibility 3.2s linear;
 }
 .flower .child:nth-child(4) .leaf {
-  background-color: #ff0;
+  background-color: #cb56ff;
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
@@ -201,7 +201,7 @@
   transition: visibility 3.2s linear;
 }
 .flower .child:nth-child(5) .leaf {
-  background-color: #cb56ff;
+  background-color: #ff0;
   -webkit-transition: -webkit-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out, box-shadow 0.16s ease-in-out;
