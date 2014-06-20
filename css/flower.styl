@@ -19,6 +19,38 @@ colors = #8a1919, #dce9f6, #2b44cf, #cb56ff, yellow // twitter, fb, photos, code
 dAngle = 360 / count
 grow = 1 + (2 * distance)
 
+//
+// Glass cover
+//
+
+.glass
+  background-image radial-gradient(circle closest-side, rgba(38, 38, 38, 0.2), rgba(0, 0, 0, 0.63))
+  background-size 100% 100
+  border-radius 50%
+  position relative
+.glass::before
+  position absolute
+  width 56%
+  height 26%
+  top 4%
+  left 22%
+  border-radius 50%
+  background-image linear-gradient(to bottom, rgba(207, 207, 207, 0.23), rgba(30, 30, 30, 0.06))
+  content ''
+.glass::after
+  position absolute
+  width 38%
+  height 19%
+  bottom 3%
+  left 31%
+  border-radius 50%
+  background-image linear-gradient(to bottom, rgba(93, 93, 93, 0.1), rgba(0, 0, 0, 0.18))
+  content ''
+
+//
+// Interactive spinner
+//
+
 .flower
   width diameter
   height diameter
@@ -74,8 +106,6 @@ grow = 1 + (2 * distance)
             transform rotate(-(rot)deg)
   .glass
     height 100%
-    background-image url('../gfx/glass.png')
-    background-size 100%
     transition transform time ease-in-out
   &:hover, &.open
     transform scale(grow) // zoom click area

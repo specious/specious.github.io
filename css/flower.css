@@ -1,6 +1,52 @@
 /*
  * CSS Flower - By Ildar Sagdejev ( http://j.mp/web-ninja )
  */
+.glass {
+  background-image: -webkit-radial-gradient(circle closest-side, rgba(38,38,38,0.2), rgba(0,0,0,0.63));
+  background-image: -moz-radial-gradient(circle closest-side, rgba(38,38,38,0.2), rgba(0,0,0,0.63));
+  background-image: -o-radial-gradient(circle closest-side, rgba(38,38,38,0.2), rgba(0,0,0,0.63));
+  background-image: -ms-radial-gradient(circle closest-side, rgba(38,38,38,0.2), rgba(0,0,0,0.63));
+  background-image: radial-gradient(circle closest-side, rgba(38,38,38,0.2), rgba(0,0,0,0.63));
+  -webkit-background-size: 100% 100;
+  -moz-background-size: 100% 100;
+  background-size: 100% 100;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+}
+.glass::before {
+  position: absolute;
+  width: 56%;
+  height: 26%;
+  top: 4%;
+  left: 22%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-image: -webkit-linear-gradient(top, rgba(207,207,207,0.23), rgba(30,30,30,0.06));
+  background-image: -moz-linear-gradient(top, rgba(207,207,207,0.23), rgba(30,30,30,0.06));
+  background-image: -o-linear-gradient(top, rgba(207,207,207,0.23), rgba(30,30,30,0.06));
+  background-image: -ms-linear-gradient(top, rgba(207,207,207,0.23), rgba(30,30,30,0.06));
+  background-image: linear-gradient(to bottom, rgba(207,207,207,0.23), rgba(30,30,30,0.06));
+  content: '';
+}
+.glass::after {
+  position: absolute;
+  width: 38%;
+  height: 19%;
+  bottom: 3%;
+  left: 31%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-image: -webkit-linear-gradient(top, rgba(93,93,93,0.1), rgba(0,0,0,0.18));
+  background-image: -moz-linear-gradient(top, rgba(93,93,93,0.1), rgba(0,0,0,0.18));
+  background-image: -o-linear-gradient(top, rgba(93,93,93,0.1), rgba(0,0,0,0.18));
+  background-image: -ms-linear-gradient(top, rgba(93,93,93,0.1), rgba(0,0,0,0.18));
+  background-image: linear-gradient(to bottom, rgba(93,93,93,0.1), rgba(0,0,0,0.18));
+  content: '';
+}
 .flower {
   width: 120px;
   height: 120px;
@@ -217,10 +263,6 @@
 }
 .flower .glass {
   height: 100%;
-  background-image: url("../gfx/glass.png");
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  background-size: 100%;
   -webkit-transition: -webkit-transform 3.2s ease-in-out;
   -moz-transition: -moz-transform 3.2s ease-in-out;
   -o-transition: -o-transform 3.2s ease-in-out;
