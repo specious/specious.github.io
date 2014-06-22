@@ -2,12 +2,11 @@ doctype html
 
 mixin leaf(link, image, title)
   .child
-    a(href=link, target="_blank")
-      .leaf
-        img(src=image, alt=title)
-        .glass-holder
-          .counterspin
-            .glass
+    a.leaf(href=link, target="_blank")
+      img(src=image, alt=title)
+      .glass-holder
+        .counterspin
+          .glass
 
 html(lang='en')
   // By Ildar Sagdejev ( http://twitter.com/tknomad ) 

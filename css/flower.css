@@ -91,6 +91,9 @@
   position: absolute;
   top: 0;
 }
+.flower a {
+  display: block;
+}
 .flower .child {
   width: 120px;
   height: 120px;
