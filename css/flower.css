@@ -125,6 +125,7 @@
   left: 20px;
   top: 20px;
   position: absolute;
+  border: none;
 }
 .flower .child:nth-child(1) {
   -webkit-transform: rotate(-90deg);
