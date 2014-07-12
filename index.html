@@ -76,23 +76,7 @@
       </div>
     </div>
     <script>
-      //
-      // Detect mobile browsers and open spinner automatically because :hover is not reliable
-      //
-      // Detection code from: http://stackoverflow.com/a/11381730/1289901
-      //
-      function isMobile() {
-        return navigator.userAgent.match(/Android/i)
-          || navigator.userAgent.match(/webOS/i)
-          || navigator.userAgent.match(/iPhone/i)
-          || navigator.userAgent.match(/iPad/i)
-          || navigator.userAgent.match(/iPod/i)
-          || navigator.userAgent.match(/BlackBerry/i)
-          || navigator.userAgent.match(/Windows Phone/i)
-      }
-
-      if( isMobile() )
-        document.getElementById('disc').children[0].className += " open"
+      document.getElementById('disc').children[0].className += " open"
     </script>
   </body>
 </html>
