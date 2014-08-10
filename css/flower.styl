@@ -70,7 +70,7 @@ grow = 1 + (2 * distance)
     background-size 100%
     border-radius 50%
     box-shadow \
-      0 0 2px 4px #d1d1d1,
+      0 0 2px 4px #d1d1d1, \
       0 0 20px 4px black
     position absolute
     top 0
@@ -120,7 +120,10 @@ grow = 1 + (2 * distance)
       // Expand
       transform rotate(swirl) translateX(diameter * distance) rotate((tumbles * 360 + 90)deg)
       &:hover
-        box-shadow 0 0 34px rgba(211, 217, 255, 1), 0 0 0 1px black, inset 0 1px 0 rgba(255, 255, 255, 0.2)
+        box-shadow \
+          0 0 34px rgba(211, 217, 255, 1), \
+          0 0 0 1px black, \
+          inset 0 1px 0 rgba(255, 255, 255, 0.2)
       .glass
         // Keep the glass cover stationary
         transform rotate((-1 * (swirl + tumbles * 360 + 90))deg)
