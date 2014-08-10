@@ -21,12 +21,12 @@ body {
   text-align: center;
 }
 a {
-  color: #ff0;
+  color: #ff0027;
   outline: 0;
   text-decoration: none;
 }
 a:hover {
-  color: #7c75f3;
+  color: #f9ce26;
 }
 #content {
   overflow: hidden;
@@ -47,6 +47,7 @@ h1 {
 #bio {
   font-family: Oswald;
   font-size: 1.2em;
+  letter-spacing: 0.05em;
   text-shadow: 1px 1px 2px #000;
   max-width: 25em;
   padding: 1em;
@@ -54,19 +55,39 @@ h1 {
   display: inline-block;
 }
 #bio strong {
-  color: #d55024;
+  color: #faf02d;
 }
 #bio .term {
   color: #be2cd4;
   cursor: default;
-  -webkit-transition: text-shadow 0.15s linear;
-  -moz-transition: text-shadow 0.15s linear;
-  -o-transition: text-shadow 0.15s linear;
-  -ms-transition: text-shadow 0.15s linear;
-  transition: text-shadow 0.15s linear;
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  -moz-transition: -moz-transform 1s ease-in-out;
+  -o-transition: -o-transform 1s ease-in-out;
+  -ms-transition: -ms-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  display: inline-block;
 }
 #bio .term:hover {
-  text-shadow: 0 0 4px #be2cd4;
+  -webkit-transform: rotateX(1turn);
+  -moz-transform: rotateX(1turn);
+  -o-transform: rotateX(1turn);
+  -ms-transform: rotateX(1turn);
+  transform: rotateX(1turn);
+}
+#view-portfolio {
+  font-size: 1.3em;
+  letter-spacing: 0.08em;
+  text-shadow: 2px 2px 4px #000;
+}
+#view-portfolio a {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#view-portfolio a:hover {
+  text-shadow: 2px 2px 7px #000;
 }
 #disc {
   width: 460px;
