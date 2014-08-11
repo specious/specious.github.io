@@ -1,6 +1,7 @@
 var gulp   = require('gulp'),
     stylus = require('gulp-stylus'),
-    nib    = require('nib')
+    nib    = require('nib'),
+    jade   = require('gulp-jade')
 
 gulp.task( 'styles', function () {
   gulp.src( ['./css/flower.styl', './css/main.styl'] )
@@ -8,4 +9,10 @@ gulp.task( 'styles', function () {
     .pipe( gulp.dest( './css' ) )
 } )
 
-gulp.task( 'default', ['styles'] )
+gulp.task( 'jade', function () {
+  gulp.src( ['./index.jade'] )
+    .pipe( jade( { pretty: true } ) )
+    .pipe( gulp.dest( './' ) )
+} )
+
+gulp.task( 'default', ['styles', 'jade'] )
