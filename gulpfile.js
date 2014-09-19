@@ -1,11 +1,12 @@
-var gulp    = require('gulp'),
-    stylus  = require('gulp-stylus'),
-    nib     = require('nib'),
-    jade    = require('gulp-jade'),
-    minicss = require('gulp-minify-css'),
-    concat  = require('gulp-concat'),
-    fs      = require('fs'),
-    repl    = require('gulp-replace')
+var gulp     = require('gulp'),
+    stylus   = require('gulp-stylus'),
+    nib      = require('nib'),
+    jade     = require('gulp-jade'),
+    minicss  = require('gulp-minify-css'),
+    concat   = require('gulp-concat'),
+    fs       = require('fs'),
+    repl     = require('gulp-replace'),
+    sequence = require('run-sequence')
 
 var paths = {
   styles: ['./css/flower.styl', './css/main.styl'],
@@ -18,7 +19,7 @@ gulp.task( 'watch', function() {
 } )
 
 gulp.task( 'styles', function () {
-  gulp.src( paths.styles )
+  return gulp.src( paths.styles )
     .pipe( stylus( { use: [ nib() ] } ) )
     .pipe( concat( 'styles.css' ) )
     .pipe( minicss() )
@@ -35,4 +36,6 @@ gulp.task( 'jade', function () {
     .pipe( gulp.dest( './' ) )
 } )
 
-gulp.task( 'default', ['watch', 'styles', 'jade'] )
+gulp.task( 'default', function() {
+  sequence( 'styles', 'jade', 'watch' )
+} )
