@@ -33,4 +33,6 @@ html(lang='en')
                 +leaf(link['url'], link['icon'], link['title'])
             .cover
     script.
-      document.getElementById('disc').children[0].className += " open"
+      setTimeout( function() {
+        document.getElementById('disc').children[0].className += " open"
+      }, 666 )
