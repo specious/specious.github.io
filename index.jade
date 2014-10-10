@@ -31,7 +31,7 @@ html(lang='en')
               include links
               each link in links
                 +leaf(link['url'], link['icon'], link['title'])
-            .cover
+            a.cover(href="http://linkedin.com/in/specious", target="_blank")
     script.
       setTimeout( function() {
         document.getElementById('disc').children[0].className += " open"
