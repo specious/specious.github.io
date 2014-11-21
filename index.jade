@@ -2,7 +2,7 @@ doctype html
 
 mixin leaf(link, image, title)
   .child
-    a.leaf(href=link, target="_blank")
+    a.leaf(href=link, data-title=title, target="_blank")
       img(src=image, alt=title)
       .glass-holder
         .counterspin

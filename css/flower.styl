@@ -124,6 +124,18 @@ grow = 1 + (2 * distance)
           0 0 34px rgba(211, 217, 255, 1), \
           0 0 0 1px black, \
           inset 0 1px 0 rgba(255, 255, 255, 0.2)
+        &:after
+          h = 22px
+          content attr(data-title)
+          color #aebaff
+          font 14px Monaco, MonoSpace
+          text-shadow 2px 2px 3px black
+          height diameter + h
+          width 100%
+          left 0
+          top -(h + 1px)
+          height h
+          position absolute
       .glass
         // Keep the glass cover stationary
         transform rotate((-1 * (swirl + tumbles * 360 + 90))deg)
