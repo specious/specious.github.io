@@ -2,7 +2,7 @@ doctype html
 
 mixin leaf(link, image, title)
   .child
-    a.leaf(href=link, data-title=title, target="_blank")
+    a.leaf(href=link, data-title=title)
       img(src=image, alt=title)
       .glass-holder
         .counterspin
@@ -31,7 +31,7 @@ html(lang='en')
               include links
               each link in links
                 +leaf(link['url'], link['icon'], link['title'])
-            a.cover(href="http://linkedin.com/in/specious", target="_blank")
+            a.cover(href="http://linkedin.com/in/specious")
     script.
       setTimeout( function() {
         document.getElementById('disc').children[0].className += " open"
