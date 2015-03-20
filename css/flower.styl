@@ -104,7 +104,7 @@ grow = 1 + (2 * distance)
         transition visibility time linear
         .leaf
           background-color c
-          transition transform time ease-in-out, box-shadow 0.16s ease-in-out
+          transition transform time ease-in-out
           .glass-holder
             transform rotate(-(rot)deg)
   .glass
@@ -120,10 +120,7 @@ grow = 1 + (2 * distance)
       // Expand
       transform rotate(swirl) translateX(diameter * distance) rotate((tumbles * 360 + 90)deg)
       &:hover
-        box-shadow \
-          0 0 34px rgba(211, 217, 255, 1), \
-          0 0 0 1px black, \
-          inset 0 1px 0 rgba(255, 255, 255, 0.2)
+        box-shadow 0 0 13px #d3d9ff
         &:after
           content attr(data-title)
           color #aebaff
