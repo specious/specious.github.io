@@ -17,7 +17,7 @@ colors = #8a1919, #dce9f6, #2b44cf, #cb56ff, yellow // twitter, fb, photos, code
 
 // auto
 dAngle = 360 / count
-grow = 1 + (2 * distance)
+grow = 1 + 2 * distance
 
 //
 // Glass cover
@@ -118,7 +118,8 @@ grow = 1 + (2 * distance)
       visibility visible
     .leaf
       // Expand
-      transform rotate(swirl) translateX(diameter * distance) rotate((tumbles * 360 + 90)deg)
+      rot = tumbles * 360 + 90
+      transform rotate(swirl) translateX(diameter * distance) rotate((rot)deg)
       &:hover
         box-shadow 0 0 13px #d3d9ff
         &:after
@@ -133,7 +134,7 @@ grow = 1 + (2 * distance)
           position absolute
       .glass
         // Keep the glass cover stationary
-        transform rotate((-1 * (swirl + tumbles * 360 + 90))deg)
+        transform rotate((-1 * (swirl + rot))deg)
 @keyframes spin
   to
     transform rotate(1turn)
