@@ -31,6 +31,8 @@ html(lang='en')
               each link in links
                 +leaf(link['url'], link['icon'], link['title'])
             a.cover(href="http://linkedin.com/in/specious")
+              img.back(src="gfx/linkedin.svg", alt="LinkedIn")
+              img.front(src="gfx/portrait.jpg", alt="Ildar")
     script.
       setTimeout( function() {
         document.getElementById('disc').children[0].className += " open"
