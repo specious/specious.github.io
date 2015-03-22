@@ -2,6 +2,7 @@ var gulp     = require('gulp'),
     stylus   = require('gulp-stylus'),
     nib      = require('nib'),
     jade     = require('gulp-jade'),
+    base64   = require('gulp-base64'),
     minicss  = require('gulp-minify-css'),
     concat   = require('gulp-concat'),
     fs       = require('fs'),
@@ -22,6 +23,7 @@ gulp.task( 'styles', function () {
   return gulp.src( paths.styles )
     .pipe( stylus( { use: [ nib() ] } ) )
     .pipe( concat( 'styles.css' ) )
+    .pipe( base64( { extensions: ['woff'] } ) )
     .pipe( minicss() )
     .pipe( gulp.dest( './css' ) )
 } )
