@@ -38,8 +38,8 @@
 //
 
 .flower
-  width flower-item-diameter
-  height flower-item-diameter
+  width flower-cover-diameter
+  height flower-cover-diameter
   border-radius 50%
   cursor pointer
   position relative
@@ -50,8 +50,8 @@
   .counterspin
     animation counter-spin flower-revolution-time infinite linear
   .cover
-    width flower-item-diameter
-    height flower-item-diameter
+    width flower-cover-diameter
+    height flower-cover-diameter
     background-color #666
     background-size 100%
     border-radius 50%
@@ -67,7 +67,8 @@
     height flower-item-diameter
     border-radius 50%
     position absolute
-    top 0
+    top ((flower-cover-diameter - flower-item-diameter) / 2)
+    left ((flower-cover-diameter - flower-item-diameter) / 2)
     visibility hidden
     .leaf
       height 100%
@@ -107,7 +108,7 @@
     .leaf
       // Expand
       rot = flower-unfolding-icon-tumbles * 360 + 90
-      transform rotate(flower-unfolding-swirl) translateX(flower-item-diameter * flower-item-orbit-radius) rotate((rot)deg)
+      transform rotate(flower-unfolding-swirl) translateX((flower-item-diameter + flower-cover-diameter * flower-item-orbit-radius)/2) rotate((rot)deg)
       &:hover
         box-shadow 0 0 13px #d3d9ff
         &:after

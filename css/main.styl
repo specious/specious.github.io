@@ -13,7 +13,7 @@
 
 // Contain the spinner inside a fixed sized element with { overflow: hidden } to prevent page scroll bars from going wild
 disc-padding = 52px
-disc-size = flower-item-diameter * (1 + 2 * flower-item-orbit-radius) + disc-padding
+disc-size = flower-cover-diameter * flower-item-orbit-radius + 2 * flower-item-diameter + disc-padding
 
 body
   color white
@@ -103,7 +103,7 @@ h1
 .flower
   user-select none
   position relative
-  top ((disc-size - flower-item-diameter) / 2)
+  top ((disc-size - flower-cover-diameter) / 2)
   display inline-block
   .cover
     background-color #270707
