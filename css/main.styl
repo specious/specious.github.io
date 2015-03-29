@@ -1,5 +1,5 @@
-@import 'nib/vendor'
-@import 'mixins'
+@require 'nib/vendor'
+@require 'flower-config'
 
 @font-face
   // source: http://www.fontsquirrel.com/fonts/airstream
@@ -11,12 +11,9 @@
   font-family Oswald
   src url('../fonts/oswald.woff') format('woff'), url('../fonts/oswald.otf') format('opentype')
 
-// Calculations to contain the spinner inside a fixed sized element
-// with { overflow: hidden } to prevent page scroll bars from going wild
-diameter = 120px // same as in flower.styl
-distance = 1.2   // same as in flower.styl
-allowance = 52px // allowance for bubbles glowing
-span = diameter * (1 + 2 * distance) + allowance
+// Contain the spinner inside a fixed sized element with { overflow: hidden } to prevent page scroll bars from going wild
+disc-padding = 52px
+disc-size = flower-item-diameter * (1 + 2 * flower-item-orbit-radius) + disc-padding
 
 body
   color white
@@ -77,8 +74,8 @@ h1
   &:hover
     text-shadow 2px 2px 7px black
 #disc
-  width span
-  height span
+  width disc-size
+  height disc-size
   border 1px rgba(41, 40, 40, 0.81) solid
   background-color rgba(6, 13, 23, 0.4)
   box-shadow 1px 1px 12px 4px rgba(0, 0, 0, 0.6)
@@ -91,7 +88,7 @@ h1
   @media only screen and (orientation: portrait)
     display block
     left 50%
-    margin-left (-(span) / 2)
+    margin-left (-(disc-size) / 2)
   &:after
     width 100%
     height 100%
@@ -106,7 +103,7 @@ h1
 .flower
   user-select none
   position relative
-  top ((span - diameter) / 2)
+  top ((disc-size - flower-item-diameter) / 2)
   display inline-block
   .cover
     background-color #270707

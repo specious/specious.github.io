@@ -10,7 +10,7 @@ var gulp     = require('gulp'),
     sequence = require('run-sequence')
 
 var paths = {
-  styles: ['./css/flower.styl', './css/main.styl'],
+  styles: ['./css/*.styl'],
   jade: './index.jade'
 }
 

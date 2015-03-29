@@ -2,22 +2,8 @@
  * CSS Flower - By Ildar Sagdejev ( http://webninja.io )
  */
 
-@import 'nib/vendor'
-@import 'mixins'
-
-count = 5
-diameter = 120px
-icon_size = 80px
-distance = 1.2 // 1 = flush
-tumbles = 3
-swirl = 720deg // 0 = first leaf at the top; goes clockwise
-time = 3.2s
-spincycle = 45s
-colors = #8a1919, #dce9f6, #2b44cf, #cb56ff, yellow // twitter, fb, photos, codepen, github
-
-// auto
-dAngle = 360 / count
-grow = 1 + 2 * distance
+@require 'nib/vendor'
+@require 'flower-config'
 
 //
 // Glass cover
@@ -52,20 +38,20 @@ grow = 1 + 2 * distance
 //
 
 .flower
-  width diameter
-  height diameter
+  width flower-item-diameter
+  height flower-item-diameter
   border-radius 50%
   cursor pointer
   position relative
   .spinner, .inner, .counterspin, .glass-holder
     height 100%
   .spinner
-    animation spin spincycle infinite linear
+    animation spin flower-revolution-time infinite linear
   .counterspin
-    animation counter-spin spincycle infinite linear
+    animation counter-spin flower-revolution-time infinite linear
   .cover
-    width diameter
-    height diameter
+    width flower-item-diameter
+    height flower-item-diameter
     background-color #666
     background-size 100%
     border-radius 50%
@@ -77,8 +63,8 @@ grow = 1 + 2 * distance
   a
     display block
   .child
-    width diameter
-    height diameter
+    width flower-item-diameter
+    height flower-item-diameter
     border-radius 50%
     position absolute
     top 0
@@ -89,37 +75,39 @@ grow = 1 + 2 * distance
       background-size 100%
       border-radius 50%
       opacity 0.94
-      transition transform time ease-in-out
+      transition transform flower-unfolding-time ease-in-out
       img
-        width icon_size
-        height icon_size
-        left ((diameter - icon_size) / 2)
-        top ((diameter - icon_size) / 2)
+        width flower-icon-size
+        height flower-icon-size
+        left ((flower-item-diameter - flower-icon-size) / 2)
+        top ((flower-item-diameter - flower-icon-size) / 2)
         position absolute
         border none
-    for c, i in colors
+    rot-delta = 360 / flower-item-count
+    for c, i in flower-item-colors
       &:nth-child({i+1})
-        rot = (dAngle * i - 90)
+        rot = (rot-delta * i - 90)
         transform rotate((rot)deg)
-        transition visibility time linear
+        transition visibility flower-unfolding-time linear
         .leaf
           background-color c
-          transition transform time ease-in-out
+          transition transform flower-unfolding-time ease-in-out
           .glass-holder
             transform rotate(-(rot)deg)
   .glass
     height 100%
-    transition transform time ease-in-out
+    transition transform flower-unfolding-time ease-in-out
   &:hover, &.open
-    transform scale(grow) // zoom click area
+    grow-ratio = 1 + 2 * flower-item-orbit-radius
+    transform scale(grow-ratio) // zoom click area
     .inner
-      transform scale(1 / grow) // but do not zoom internal elements
+      transform scale(1 / grow-ratio) // but do not zoom internal elements
     .child
       visibility visible
     .leaf
       // Expand
-      rot = tumbles * 360 + 90
-      transform rotate(swirl) translateX(diameter * distance) rotate((rot)deg)
+      rot = flower-unfolding-icon-tumbles * 360 + 90
+      transform rotate(flower-unfolding-swirl) translateX(flower-item-diameter * flower-item-orbit-radius) rotate((rot)deg)
       &:hover
         box-shadow 0 0 13px #d3d9ff
         &:after
@@ -134,7 +122,7 @@ grow = 1 + 2 * distance
           position absolute
       .glass
         // Keep the glass cover stationary
-        transform rotate((-1 * (swirl + rot))deg)
+        transform rotate((-1 * (flower-unfolding-swirl + rot))deg)
 @keyframes spin
   to
     transform rotate(1turn)
