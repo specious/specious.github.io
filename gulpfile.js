@@ -2,6 +2,7 @@ var gulp     = require('gulp'),
     stylus   = require('gulp-stylus'),
     nib      = require('nib'),
     jade     = require('gulp-jade'),
+    prettify = require('gulp-html-prettify'),
     base64   = require('gulp-base64'),
     minicss  = require('gulp-minify-css'),
     concat   = require('gulp-concat'),
@@ -30,10 +31,16 @@ gulp.task( 'styles', function () {
 
 gulp.task( 'jade', function () {
   gulp.src( paths.jade )
-    .pipe( jade( { pretty: true } ) )
-    // Import CSS: http://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
+    .pipe( jade() )
+    // Import the CSS: http://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
     .pipe( repl( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
         return '<style>' + fs.readFileSync( file, 'utf8' ) + '</style>'
+    } ) )
+    .pipe( prettify( {
+      indent_size: 2,
+      wrap_line_length: 32786,
+      indent_inner_html: true,
+      unformatted: ['a', 'span', 'strong']
     } ) )
     .pipe( gulp.dest( './' ) )
 } )
