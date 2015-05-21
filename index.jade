@@ -27,7 +27,6 @@ html(lang='en')
         .flower
           .inner
             .spinner
-              include links
               each link in links
                 +leaf(link['url'], link['icon'], link['title'])
             a.cover(href="http://linkedin.com/in/specious")

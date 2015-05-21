@@ -1,6 +1,7 @@
 var gulp     = require('gulp'),
     stylus   = require('gulp-stylus'),
     nib      = require('nib'),
+    data     = require('gulp-data'),
     jade     = require('gulp-jade'),
     prettify = require('gulp-html-prettify'),
     base64   = require('gulp-base64'),
@@ -12,12 +13,14 @@ var gulp     = require('gulp'),
 
 var paths = {
   styles: './css/*.styl',
+  config: './config.json',
   jade: './index.jade'
 }
 
 gulp.task( 'watch', function() {
   gulp.watch( paths.styles, ['styles-and-jade'] )
   gulp.watch( paths.jade, ['jade'] )
+  gulp.watch( paths.config, ['jade'] )
 } )
 
 gulp.task( 'styles', function () {
@@ -31,10 +34,16 @@ gulp.task( 'styles', function () {
 
 gulp.task( 'jade', function () {
   gulp.src( paths.jade )
+    // Load external link definitions:
+    //   http://codepen.io/hoichi/blog/json-to-jade-in-gulp
+    .pipe( data( function( /* file */ ) {
+      return JSON.parse( fs.readFileSync( './config.json' ) )
+    } ) )
     .pipe( jade() )
-    // Import the CSS: http://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
+    // Import the CSS:
+    //   http://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
     .pipe( repl( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
-        return '<style>' + fs.readFileSync( file, 'utf8' ) + '</style>'
+      return '<style>' + fs.readFileSync( file, 'utf8' ) + '</style>'
     } ) )
     .pipe( prettify( {
       indent_size: 2,
