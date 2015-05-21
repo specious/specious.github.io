@@ -11,7 +11,7 @@ var gulp     = require('gulp'),
     sequence = require('run-sequence')
 
 var paths = {
-  styles: ['./css/*.styl'],
+  styles: './css/*.styl',
   jade: './index.jade'
 }
 
@@ -48,7 +48,7 @@ gulp.task( 'jade', function () {
 gulp.task( 'styles-and-jade', function() {
   /*
    * Compile Jade after styles because processed styles are
-   * embedded into the HTML.
+   * embedded into the HTML, which is derived from the *.jade.
    */
   sequence( 'styles', 'jade' )
 } )
