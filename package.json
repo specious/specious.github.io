@@ -1,18 +1,18 @@
 {
   "name": "webninja-io",
   "version": "1.1.1",
-  "description": "Ildar Sagdejev - personal website",
-  "main": "index.html",
+  "description": "Ildar Sagdejev (web developer)",
+  "homepage": "http://specious.github.io",
   "author": "Ildar Sagdejev",
+  "private": true,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "specious/specious.github.io"
+  },
   "bugs": {
     "url": "https://github.com/specious/specious.github.io/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/specious/specious.github.io.git"
-  },
-  "homepage": "http://webninja.io",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-base64": "^0.1.2",

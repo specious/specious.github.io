@@ -1,5 +1,3 @@
-# webninja.io
-
 A swiftly-loading, easily configurable, flat-file, modern, responsive intro page featuring a short info section and an iconic circular link menu that spins.
 
 ## Features
@@ -11,7 +9,7 @@ A swiftly-loading, easily configurable, flat-file, modern, responsive intro page
 * Menu cover swings open when hovered over to reveal an element hidden behind it
 * Very easy to work with if you're comfortable with [Jade](http://jade-lang.com/), [Stylus](http://learnboost.github.io/stylus/) and [npm](http://www.npmjs.com/)
 
-Go ahead, fork it and make something awesome! ッ
+Go ahead, fork it! ッ
 
 ## License
 
