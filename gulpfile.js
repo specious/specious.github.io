@@ -34,9 +34,9 @@ gulp.task( 'styles', function () {
 
 gulp.task( 'jade', function () {
   gulp.src( paths.jade )
-    // Load external link definitions:
+    // Load link definitions from external file:
     //   http://codepen.io/hoichi/blog/json-to-jade-in-gulp
-    .pipe( data( function( /* file */ ) {
+    .pipe( data( function() {
       return JSON.parse( fs.readFileSync( './config.json' ) )
     } ) )
     .pipe( jade() )
