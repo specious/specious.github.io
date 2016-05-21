@@ -3,7 +3,7 @@ doctype html
 mixin leaf(link, image, title)
   .child
     a.leaf(href=link, data-title=title)
-      img(src=image, alt=title)
+      img(src='gfx/icons/' + image, alt=title)
       .glass-holder
         .counterspin
           .glass

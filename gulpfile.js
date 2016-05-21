@@ -5,6 +5,7 @@ var gulp     = require('gulp'),
     jade     = require('gulp-jade'),
     prettify = require('gulp-html-prettify'),
     base64   = require('gulp-base64'),
+    inlineimg = require('gulp-inline-image-html'),
     cleancss = require('gulp-clean-css'),
     concat   = require('gulp-concat'),
     fs       = require('fs'),
@@ -40,6 +41,7 @@ gulp.task( 'jade', function () {
       return JSON.parse( fs.readFileSync( './config.json' ) )
     } ) )
     .pipe( jade() )
+    .pipe( inlineimg() )
     // Import the CSS:
     //   http://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
     .pipe( repl( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
