@@ -18,7 +18,7 @@ var paths = {
   jade: './index.jade'
 }
 
-gulp.task( 'watch', function() {
+gulp.task( '_watch', function() {
   gulp.watch( paths.styles, ['styles-and-jade'] )
   gulp.watch( paths.jade, ['jade'] )
   gulp.watch( paths.config, ['jade'] )
@@ -64,6 +64,18 @@ gulp.task( 'styles-and-jade', function() {
   sequence( 'styles', 'jade' )
 } )
 
+//
+// Build
+//
+
 gulp.task( 'default', function() {
-  sequence( 'styles', 'jade', 'watch' )
+  sequence( 'styles', 'jade' )
+} )
+
+//
+// Build and watch
+//
+
+gulp.task( 'watch', function() {
+  sequence( 'default', '_watch' )
 } )

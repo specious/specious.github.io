@@ -18,6 +18,14 @@ gulp
 
 Then open `index.html`.
 
+## Develop
+
+```
+gulp watch
+```
+
+When you save changes, `index.html` will be rebuilt.
+
 ## License
 
 ISC
