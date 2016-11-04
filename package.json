@@ -16,16 +16,16 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-base64": "^0.1.3",
-    "gulp-clean-css": "^2.0.6",
+    "gulp-clean-css": "^2.0.13",
     "gulp-concat": "^2.6.0",
     "gulp-data": "^1.2.1",
     "gulp-html-prettify": "0.0.1",
     "gulp-inline-image-html": "^0.2.1",
     "gulp-jade": "^1.1.0",
     "gulp-replace": "^0.5.4",
-    "gulp-stylus": "^2.3.1",
+    "gulp-stylus": "^2.6.0",
     "inline-image": "specious/inline-images#ff7ba1e",
-    "nib": "^1.1.0",
-    "run-sequence": "^1.1.5"
+    "nib": "^1.1.2",
+    "run-sequence": "^1.2.2"
   }
 }
