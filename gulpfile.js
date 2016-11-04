@@ -15,6 +15,7 @@ var gulp     = require('gulp'),
 var paths = {
   styles: './css/*.styl',
   config: './config.json',
+  images: './gfx/**/*',
   jade: './index.jade'
 }
 
@@ -22,6 +23,7 @@ gulp.task( '_watch', function() {
   gulp.watch( paths.styles, ['styles-and-jade'] )
   gulp.watch( paths.jade, ['jade'] )
   gulp.watch( paths.config, ['jade'] )
+  gulp.watch( paths.images, ['jade'] )
 } )
 
 gulp.task( 'styles', function () {
