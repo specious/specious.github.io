@@ -9,7 +9,7 @@ var gulp     = require('gulp'),
     cleancss = require('gulp-clean-css'),
     concat   = require('gulp-concat'),
     fs       = require('fs'),
-    repl     = require('gulp-replace'),
+    replace  = require('gulp-replace'),
     sequence = require('run-sequence')
 
 var paths = {
@@ -46,7 +46,7 @@ gulp.task( 'jade', function () {
     .pipe( inlineimg() )
     // Import the CSS:
     //   http://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
-    .pipe( repl( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
+    .pipe( replace( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
       return '<style>' + fs.readFileSync( file, 'utf8' ) + '</style>'
     } ) )
     .pipe( prettify( {
