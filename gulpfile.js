@@ -2,7 +2,7 @@ var gulp     = require('gulp'),
     stylus   = require('gulp-stylus'),
     nib      = require('nib'),
     data     = require('gulp-data'),
-    jade     = require('gulp-jade'),
+    jade     = require('gulp-pug'),
     prettify = require('gulp-html-prettify'),
     base64   = require('gulp-base64'),
     inlineimg = require('gulp-inline-image-html'),
@@ -53,7 +53,7 @@ gulp.task( 'jade', function () {
       indent_size: 2,
       wrap_line_length: 32786,
       indent_inner_html: true,
-      unformatted: ['a', 'span', 'strong']
+      unformatted: ['span', 'strong']
     } ) )
     .pipe( gulp.dest( './' ) )
 } )
