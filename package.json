@@ -23,7 +23,7 @@
     "gulp-inline-image-html": "^0.2.1",
     "gulp-pug": "^3.3.0",
     "gulp-replace": "^0.6.1",
-    "gulp-stylus": "^2.6.0",
+    "gulp-stylus": "^2.7.0",
     "inline-images": "specious/inline-images#b4a3c01",
     "nib": "^1.1.2",
     "run-sequence": "^2.2.0"
