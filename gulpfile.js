@@ -5,7 +5,7 @@ var gulp     = require('gulp'),
     jade     = require('gulp-pug'),
     prettify = require('gulp-html-prettify'),
     base64   = require('gulp-base64'),
-    inlineimg = require('gulp-inline-image-html'),
+    inlineimg= require('gulp-inline-image-html'),
     cleancss = require('gulp-clean-css'),
     concat   = require('gulp-concat'),
     fs       = require('fs'),
@@ -16,12 +16,12 @@ var paths = {
   styles: './css/*.styl',
   config: './config.json',
   images: './gfx/**/*',
-  jade: './index.jade'
+  jade:   './index.jade'
 }
 
 gulp.task( '_watch', function() {
   gulp.watch( paths.styles, ['styles-and-jade'] )
-  gulp.watch( paths.jade, ['jade'] )
+  gulp.watch( paths.jade,   ['jade'] )
   gulp.watch( paths.config, ['jade'] )
   gulp.watch( paths.images, ['jade'] )
 } )
