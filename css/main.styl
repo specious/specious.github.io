@@ -1,5 +1,5 @@
 @require 'nib/vendor'
-@require 'flower-config'
+@require 'widget-spinner-config'
 
 @font-face
   // source: http://www.fontsquirrel.com/fonts/airstream
@@ -13,7 +13,7 @@
 
 // Contain the spinner inside a fixed sized element with { overflow: hidden } to prevent page scroll bars from going wild
 disc-padding = 52px
-disc-size = flower-cover-diameter * flower-item-orbit-radius + 2 * flower-item-diameter + disc-padding
+disc-size = spinner-cover-diameter * spinner-item-orbit-radius + 2 * spinner-item-diameter + disc-padding
 
 html
   height 100%
@@ -91,10 +91,10 @@ h1
     position absolute
     left 0
     content ''
-.flower
+.widget-spinner
   user-select none
   position relative
-  top ((disc-size - flower-cover-diameter) / 2)
+  top ((disc-size - spinner-cover-diameter) / 2)
   display inline-block
   .cover
     background-color #270707

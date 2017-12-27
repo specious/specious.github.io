@@ -26,9 +26,9 @@ html(lang='en')
           | Explore my links wheel to learn more about what I do.
         img.qr(src="gfx/qr-code.png", alt="QR")
       #disc
-        .flower
+        .widget-spinner
           .inner
-            .spinner
+            .carousel
               each link in links
                 +leaf(link['url'], link['icon'], link['title'])
             a.cover(href="http://linkedin.com/in/specious")

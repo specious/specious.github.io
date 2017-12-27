@@ -1,9 +1,9 @@
 /*
- * CSS Flower - By Ildar Sagdejev ( http://webninja.io )
+ * CSS Widget Spinner
  */
 
 @require 'nib/vendor'
-@require 'flower-config'
+@require 'widget-spinner-config'
 
 //
 // Glass cover
@@ -37,21 +37,21 @@
 // Interactive spinner
 //
 
-.flower
-  width flower-cover-diameter
-  height flower-cover-diameter
+.widget-spinner
+  width spinner-cover-diameter
+  height spinner-cover-diameter
   border-radius 50%
   cursor pointer
   position relative
-  .spinner, .inner, .counterspin, .glass-holder
+  .carousel, .inner, .counterspin, .glass-holder
     height 100%
-  .spinner
-    animation spin flower-revolution-time infinite linear
+  .carousel
+    animation spin spinner-revolution-time infinite linear
   .counterspin
-    animation counter-spin flower-revolution-time infinite linear
+    animation counter-spin spinner-revolution-time infinite linear
   .cover
-    width flower-cover-diameter
-    height flower-cover-diameter
+    width spinner-cover-diameter
+    height spinner-cover-diameter
     background-color #666
     background-size 100%
     border-radius 50%
@@ -63,12 +63,12 @@
   a
     display block
   .child
-    width flower-item-diameter
-    height flower-item-diameter
+    width spinner-item-diameter
+    height spinner-item-diameter
     border-radius 50%
     position absolute
-    top ((flower-cover-diameter - flower-item-diameter) / 2)
-    left ((flower-cover-diameter - flower-item-diameter) / 2)
+    top ((spinner-cover-diameter - spinner-item-diameter) / 2)
+    left ((spinner-cover-diameter - spinner-item-diameter) / 2)
     visibility hidden
     .leaf
       height 100%
@@ -76,30 +76,30 @@
       background-size 100%
       border-radius 50%
       opacity 0.94
-      transition transform flower-unfolding-time ease-in-out
+      transition transform spinner-unfolding-time ease-in-out
       img
-        width flower-icon-size
-        height flower-icon-size
-        left ((flower-item-diameter - flower-icon-size) / 2)
-        top ((flower-item-diameter - flower-icon-size) / 2)
+        width spinner-icon-size
+        height spinner-icon-size
+        left ((spinner-item-diameter - spinner-icon-size) / 2)
+        top ((spinner-item-diameter - spinner-icon-size) / 2)
         position absolute
         border none
-    rot-delta = 360 / flower-item-count
-    for c, i in flower-item-colors
+    rot-delta = 360 / spinner-item-count
+    for c, i in spinner-item-colors
       &:nth-child({i+1})
         rot = (rot-delta * i - 90)
         transform rotate((rot)deg)
-        transition visibility flower-unfolding-time linear
+        transition visibility spinner-unfolding-time linear
         .leaf
           background-color c
-          transition transform flower-unfolding-time ease-in-out
+          transition transform spinner-unfolding-time ease-in-out
           .glass-holder
             transform rotate(-(rot)deg)
   .glass
     height 100%
-    transition transform flower-unfolding-time ease-in-out
+    transition transform spinner-unfolding-time ease-in-out
   &:hover, &.open
-    grow-ratio = 1 + 2 * flower-item-orbit-radius
+    grow-ratio = 1 + 2 * spinner-item-orbit-radius
     transform scale(grow-ratio) // zoom click area
     .inner
       transform scale(1 / grow-ratio) // but do not zoom internal elements
@@ -107,8 +107,8 @@
       visibility visible
     .leaf
       // Expand
-      rot = flower-unfolding-icon-tumbles * 360 + 90
-      transform rotate(flower-unfolding-swirl) translateX((flower-item-diameter + flower-cover-diameter * flower-item-orbit-radius)/2) rotate((rot)deg)
+      rot = spinner-unfolding-icon-tumbles * 360 + 90
+      transform rotate(spinner-unfolding-swirl) translateX((spinner-item-diameter + spinner-cover-diameter * spinner-item-orbit-radius)/2) rotate((rot)deg)
       &:hover
         box-shadow 0 0 13px #d3d9ff
         &:after
@@ -123,7 +123,7 @@
           position absolute
       .glass
         // Keep the glass cover stationary
-        transform rotate((-1 * (flower-unfolding-swirl + rot))deg)
+        transform rotate((-1 * (spinner-unfolding-swirl + rot))deg)
 @keyframes spin
   to
     transform rotate(1turn)
