@@ -1,37 +1,42 @@
 var gulp     = require('gulp'),
     stylus   = require('gulp-stylus'),
-    nib      = require('nib'),
+    postcss  = require('gulp-postcss'),
+    cssnext  = require('postcss-cssnext'),
     data     = require('gulp-data'),
     jade     = require('gulp-pug'),
     prettify = require('gulp-html-prettify'),
     base64   = require('gulp-base64'),
     inlineimg= require('gulp-inline-image-html'),
-    cleancss = require('gulp-clean-css'),
     concat   = require('gulp-concat'),
     fs       = require('fs'),
     replace  = require('gulp-replace'),
     sequence = require('run-sequence')
 
 var paths = {
-  styles: './css/*.styl',
+  styles: {
+    watch: './css/**/*.styl',
+    src:   './css/main.styl'
+  },
   config: './config.json',
   images: './gfx/**/*',
   jade:   './index.jade'
 }
 
 gulp.task( '_watch', function() {
-  gulp.watch( paths.styles, ['styles-and-jade'] )
+  gulp.watch( paths.styles.watch, ['styles-and-jade'] )
   gulp.watch( paths.jade,   ['jade'] )
   gulp.watch( paths.config, ['jade'] )
   gulp.watch( paths.images, ['jade'] )
 } )
 
 gulp.task( 'styles', function () {
-  return gulp.src( paths.styles )
-    .pipe( stylus( { use: [ nib() ] } ) )
-    .pipe( concat( 'styles.css' ) )
+  return gulp.src( paths.styles.src )
+    .pipe( stylus( { compress: true } ) )
     .pipe( base64( { extensions: ['woff'] } ) )
-    .pipe( cleancss() )
+    .pipe( postcss( [
+      cssnext( { browsers: ['last 2 versions'] } )
+    ] ) )
+    .pipe( concat( 'styles.css' ) )
     .pipe( gulp.dest( './css' ) )
 } )
 
