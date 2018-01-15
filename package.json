@@ -17,16 +17,16 @@
     "gulp": "^3.9.1",
     "gulp-base64": "^0.1.3",
     "gulp-concat": "^2.6.1",
-    "gulp-data": "^1.2.1",
+    "gulp-data": "^1.3.1",
     "gulp-html-prettify": "^0.0.1",
     "gulp-inline-image-html": "^0.2.1",
-    "gulp-postcss": "^7.0.0",
+    "gulp-postcss": "^7.0.1",
     "gulp-pug": "^3.3.0",
     "gulp-replace": "^0.6.1",
     "gulp-stylus": "^2.7.0",
     "inline-images": "specious/inline-images#b4a3c01",
     "postcss-cssnext": "^3.0.2",
-    "run-sequence": "^2.2.0"
+    "run-sequence": "^2.2.1"
   },
   "resolutions": {
     "gulp-inline-image-html/inline-images": "specious/inline-images#b4a3c01"
