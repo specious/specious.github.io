@@ -3,7 +3,7 @@ var gulp     = require('gulp'),
     postcss  = require('gulp-postcss'),
     cssnext  = require('postcss-cssnext'),
     data     = require('gulp-data'),
-    jade     = require('gulp-pug'),
+    pug      = require('gulp-pug'),
     prettify = require('gulp-html-prettify'),
     base64   = require('gulp-base64'),
     inlineimg= require('gulp-inline-image-html'),
@@ -19,14 +19,14 @@ var paths = {
   },
   config: './config.json',
   images: './gfx/**/*',
-  jade:   './index.jade'
+  pug:    './index.pug'
 }
 
 gulp.task( '_watch', function() {
-  gulp.watch( paths.styles.watch, ['styles-and-jade'] )
-  gulp.watch( paths.jade,   ['jade'] )
-  gulp.watch( paths.config, ['jade'] )
-  gulp.watch( paths.images, ['jade'] )
+  gulp.watch( paths.styles.watch, ['styles-and-pug'] )
+  gulp.watch( paths.pug,   ['pug'] )
+  gulp.watch( paths.config, ['pug'] )
+  gulp.watch( paths.images, ['pug'] )
 } )
 
 gulp.task( 'styles', function () {
@@ -40,14 +40,14 @@ gulp.task( 'styles', function () {
     .pipe( gulp.dest( './css' ) )
 } )
 
-gulp.task( 'jade', function () {
-  gulp.src( paths.jade )
+gulp.task( 'pug', function () {
+  gulp.src( paths.pug )
     // Load link definitions from external file:
-    //   http://codepen.io/hoichi/blog/json-to-jade-in-gulp
+    //   https://codepen.io/hoichi/blog/json-to-jade-in-gulp
     .pipe( data( function() {
       return JSON.parse( fs.readFileSync( './config.json' ) )
     } ) )
-    .pipe( jade() )
+    .pipe( pug() )
     .pipe( inlineimg() )
     // Import the CSS:
     //   http://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
@@ -63,12 +63,12 @@ gulp.task( 'jade', function () {
     .pipe( gulp.dest( './' ) )
 } )
 
-gulp.task( 'styles-and-jade', function() {
+gulp.task( 'styles-and-pug', function() {
   /*
-   * Compile Jade after styles because processed styles are
-   * embedded into the HTML, which is derived from the *.jade.
+   * Compile Pug after styles because processed styles are
+   * embedded into the HTML, which is derived from the *.pug.
    */
-  sequence( 'styles', 'jade' )
+  sequence( 'styles', 'pug' )
 } )
 
 //
@@ -76,7 +76,7 @@ gulp.task( 'styles-and-jade', function() {
 //
 
 gulp.task( 'default', function() {
-  sequence( 'styles', 'jade' )
+  sequence( 'styles', 'pug' )
 } )
 
 //
