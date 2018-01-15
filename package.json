@@ -19,7 +19,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-data": "^1.3.1",
     "gulp-html-prettify": "^0.0.1",
-    "gulp-inline-image-html": "^0.2.1",
+    "gulp-inline-image-html": "specious/gulp-inline-image-html#ad9cdfe",
     "gulp-postcss": "^7.0.1",
     "gulp-pug": "^3.3.0",
     "gulp-replace": "^0.6.1",
