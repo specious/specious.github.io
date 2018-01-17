@@ -50,7 +50,7 @@ gulp.task( 'pug', function () {
     .pipe( pug() )
     .pipe( inlineimg() )
     // Import the CSS:
-    //   http://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
+    //   https://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
     .pipe( replace( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
       return '<style>' + fs.readFileSync( file, 'utf8' ) + '</style>'
     } ) )
@@ -65,8 +65,9 @@ gulp.task( 'pug', function () {
 
 gulp.task( 'styles-and-pug', function() {
   /*
-   * Compile Pug after styles because processed styles are
-   * embedded into the HTML, which is derived from the *.pug.
+   * Compile Pug after styles because compiled styles are
+   * embedded into the HTML document, which should be already
+   * built from the *.pug.
    */
   sequence( 'styles', 'pug' )
 } )
