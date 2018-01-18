@@ -1,8 +1,8 @@
 {
   "name": "specious-github-io",
-  "version": "1.2.0",
-  "description": "Ildar Sagdejev (my website)",
-  "homepage": "https://specious.github.io",
+  "version": "2.0.0",
+  "description": "Ildar Sagdejev (microwebsite)",
+  "homepage": "http://specious.github.io",
   "author": "Ildar Sagdejev",
   "private": true,
   "license": "ISC",
@@ -13,8 +13,12 @@
   "bugs": {
     "url": "https://github.com/specious/specious.github.io/issues"
   },
+  "scripts": {
+    "build": "gulp",
+    "watch": "gulp watch"
+  },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-base64": "^0.1.3",
     "gulp-concat": "^2.6.1",
     "gulp-data": "^1.3.1",
@@ -25,8 +29,7 @@
     "gulp-replace": "^0.6.1",
     "gulp-stylus": "^2.7.0",
     "inline-images": "specious/inline-images#b4a3c01",
-    "postcss-cssnext": "^3.0.2",
-    "run-sequence": "^2.2.1"
+    "postcss-cssnext": "^3.0.2"
   },
   "resolutions": {
     "gulp-inline-image-html/inline-images": "specious/inline-images#b4a3c01"

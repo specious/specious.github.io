@@ -1,2 +1,2 @@
-node_modules
-css/styles.css
+node_modules/
+*.css

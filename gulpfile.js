@@ -9,8 +9,7 @@ var gulp     = require('gulp'),
     inlineimg= require('gulp-inline-image-html'),
     concat   = require('gulp-concat'),
     fs       = require('fs'),
-    replace  = require('gulp-replace'),
-    sequence = require('run-sequence')
+    replace  = require('gulp-replace')
 
 var paths = {
   styles: {
@@ -22,26 +21,38 @@ var paths = {
   pug:    './index.pug'
 }
 
+//
+// Internal watch triggers
+//
+
 gulp.task( '_watch', function() {
-  gulp.watch( paths.styles.watch, ['styles-and-pug'] )
-  gulp.watch( paths.pug,   ['pug'] )
-  gulp.watch( paths.config, ['pug'] )
-  gulp.watch( paths.images, ['pug'] )
+  gulp.watch( paths.styles.watch, gulp.series( 'default' ) )
+  gulp.watch( paths.pug,    gulp.series( 'pug' ) )
+  gulp.watch( paths.config, gulp.series( 'pug' ) )
+  gulp.watch( paths.images, gulp.series( 'pug' ) )
 } )
 
-gulp.task( 'styles', function () {
+//
+// Build style.css
+//
+
+gulp.task( 'styles', function() {
   return gulp.src( paths.styles.src )
     .pipe( stylus( { compress: true } ) )
     .pipe( base64( { extensions: ['woff'] } ) )
     .pipe( postcss( [
       cssnext( { browsers: ['last 2 versions'] } )
     ] ) )
-    .pipe( concat( 'styles.css' ) )
+    .pipe( concat( 'style.css' ) )
     .pipe( gulp.dest( './css' ) )
 } )
 
-gulp.task( 'pug', function () {
-  gulp.src( paths.pug )
+//
+// Build index.html
+//
+
+gulp.task( 'pug', function() {
+  return gulp.src( paths.pug )
     // Load link definitions from external file:
     //   https://codepen.io/hoichi/blog/json-to-jade-in-gulp
     .pipe( data( function() {
@@ -63,27 +74,14 @@ gulp.task( 'pug', function () {
     .pipe( gulp.dest( './' ) )
 } )
 
-gulp.task( 'styles-and-pug', function() {
-  /*
-   * Compile Pug after styles because compiled styles are
-   * embedded into the HTML document, which should be already
-   * built from the *.pug.
-   */
-  sequence( 'styles', 'pug' )
-} )
-
 //
-// Build
+// The default task is to build the product
 //
 
-gulp.task( 'default', function() {
-  sequence( 'styles', 'pug' )
-} )
+gulp.task( 'default', gulp.series( 'styles', 'pug' ) )
 
 //
 // Build and watch
 //
 
-gulp.task( 'watch', function() {
-  sequence( 'default', '_watch' )
-} )
+gulp.task( 'watch', gulp.series( 'default', '_watch' ) )
