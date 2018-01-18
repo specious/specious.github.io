@@ -22,17 +22,6 @@ var paths = {
 }
 
 //
-// Internal watch triggers
-//
-
-gulp.task( '_watch', function() {
-  gulp.watch( paths.styles.watch, gulp.series( 'default' ) )
-  gulp.watch( paths.pug,    gulp.series( 'pug' ) )
-  gulp.watch( paths.config, gulp.series( 'pug' ) )
-  gulp.watch( paths.images, gulp.series( 'pug' ) )
-} )
-
-//
 // Build style.css
 //
 
@@ -72,6 +61,23 @@ gulp.task( 'pug', function() {
       unformatted: ['span', 'strong']
     } ) )
     .pipe( gulp.dest( './' ) )
+} )
+
+//
+// Watch file changes and trigger build tasks
+//
+
+gulp.task( '_watch', function() {
+  // Task watch wrapper that prevents an error from bubbling up and stopping the watch process
+  function gulpWatch( globs, fn ) {
+    gulp.watch( globs, fn )
+      .on( 'error', function() { this.emit('end') } )
+  }
+
+  gulpWatch( paths.styles.watch, gulp.series( 'default' ) )
+  gulpWatch( paths.pug,    gulp.series( 'pug' ) )
+  gulpWatch( paths.config, gulp.series( 'pug' ) )
+  gulpWatch( paths.images, gulp.series( 'pug' ) )
 } )
 
 //
