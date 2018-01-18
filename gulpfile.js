@@ -13,11 +13,12 @@ var gulp     = require('gulp'),
 
 var paths = {
   styles: {
-    watch: './css/**/*.styl',
-    src:   './css/main.styl'
+    dir:   './styles',
+    watch: './styles/**/*.styl',
+    src:   './styles/main.styl'
   },
   config: './config.json',
-  images: './gfx/**/*',
+  images: './images/**/*',
   pug:    './index.pug'
 }
 
@@ -33,11 +34,11 @@ gulp.task( 'styles', function() {
       cssnext( { browsers: ['last 2 versions'] } )
     ] ) )
     .pipe( concat( 'style.css' ) )
-    .pipe( gulp.dest( './css' ) )
+    .pipe( gulp.dest( paths.styles.dir ) )
 } )
 
 //
-// Build index.html
+// Build index.html (which embeds a built style.css)
 //
 
 gulp.task( 'pug', function() {

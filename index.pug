@@ -3,7 +3,7 @@ doctype html
 mixin leaf(link, image, title)
   .child
     a.leaf(href=link, data-title=title)
-      img(src='gfx/icons/' + image, alt=title)
+      img(src='images/icons/' + image, alt=title)
       .glass-holder
         .counterspin
           .glass
@@ -13,7 +13,7 @@ html(lang='en')
   head
     meta(charset='UTF-8')
     title Ildar Sagdejev
-    link(rel='stylesheet', href='css/style.css')
+    link(rel='stylesheet', href='styles/style.css')
   body
     #content
       h1 Ildar Sagdejev
@@ -24,7 +24,7 @@ html(lang='en')
           | You can reach me at → <a href="mailto:specious@gmail.com">specious at gmail dot com</a>
         p
           | Explore my links wheel to learn more about what I do.
-        img.qr(src="gfx/qr-code.png", alt="QR")
+        img.qr(src="images/qr-code.png", alt="QR")
       #disc
         .widget-spinner
           .inner
@@ -32,8 +32,8 @@ html(lang='en')
               each link in links
                 +leaf(link['url'], link['icon'], link['title'])
             a.cover(href="http://linkedin.com/in/specious")
-              img.back(src="gfx/linkedin.svg", alt="LinkedIn")
-              img.front(src="gfx/portrait.jpg", alt="")
+              img.back(src="images/linkedin.svg", alt="LinkedIn")
+              img.front(src="images/portrait.jpg", alt="")
     script.
       setTimeout( function() {
         document.getElementById('disc').children[0].className += " open"
