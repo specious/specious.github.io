@@ -64,17 +64,23 @@ gulp.task( 'pug', function() {
 } )
 
 //
-// Watch file changes and trigger build tasks
+// Build the product
 //
 
-gulp.task( '_watch', function() {
+gulp.task( 'build', gulp.series( 'styles', 'pug' ) )
+
+//
+// Watch file changes and trigger builds
+//
+
+gulp.task( 'watch', function() {
   // Task watch wrapper that prevents an error from bubbling up and stopping the watch process
   function gulpWatch( globs, fn ) {
     gulp.watch( globs, fn )
       .on( 'error', function() { this.emit('end') } )
   }
 
-  gulpWatch( paths.styles.watch, gulp.series( 'default' ) )
+  gulpWatch( paths.styles.watch, gulp.series( 'build' ) )
   gulpWatch( paths.pug,    gulp.series( 'pug' ) )
   gulpWatch( paths.config, gulp.series( 'pug' ) )
   gulpWatch( paths.images, gulp.series( 'pug' ) )
@@ -84,10 +90,10 @@ gulp.task( '_watch', function() {
 // The default task is to build the product
 //
 
-gulp.task( 'default', gulp.series( 'styles', 'pug' ) )
+gulp.task( 'default', gulp.series( 'build' ) )
 
 //
 // Build and watch
 //
 
-gulp.task( 'watch', gulp.series( 'default', '_watch' ) )
+gulp.task( 'build-and-watch', gulp.series( 'build', 'watch' ) )

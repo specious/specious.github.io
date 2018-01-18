@@ -14,8 +14,8 @@
     "url": "https://github.com/specious/specious.github.io/issues"
   },
   "scripts": {
-    "build": "gulp",
-    "watch": "gulp watch"
+    "build": "gulp build",
+    "watch": "gulp build-and-watch"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
