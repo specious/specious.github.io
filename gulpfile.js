@@ -13,13 +13,13 @@ var gulp     = require('gulp'),
 
 var paths = {
   styles: {
-    dir:   './styles',
-    watch: './styles/**/*.styl',
-    src:   './styles/main.styl'
+    dir:   './src/styles',
+    watch: './src/styles/**/*.styl',
+    src:   './src/styles/main.styl'
   },
   config: './config.json',
   images: './images/**/*',
-  pug:    './index.pug'
+  pug:    './src/index.pug'
 }
 
 //
