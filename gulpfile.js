@@ -43,15 +43,15 @@ gulp.task( 'styles', function() {
 
 gulp.task( 'pug', function() {
   return gulp.src( paths.pug )
-    // Load link definitions from external file:
-    //   https://codepen.io/hoichi/blog/json-to-jade-in-gulp
+    // Load configuration data from a file
+    //   ( https://codepen.io/hoichi/blog/json-to-jade-in-gulp )
     .pipe( data( function() {
       return JSON.parse( fs.readFileSync( './config.json' ) )
     } ) )
     .pipe( pug() )
     .pipe( inlineimg() )
-    // Import the CSS:
-    //   https://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp
+    // Import the CSS
+    //   ( https://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp )
     .pipe( replace( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
       return '<style>' + fs.readFileSync( file, 'utf8' ) + '</style>'
     } ) )
