@@ -22,13 +22,13 @@ yarn install
 Build the `index.html` file by running:
 
 ```
-npm run build
+yarn run build
 ```
 
 You can start a watch process over the source files by running:
 
 ```
-npm run watch
+yarm run watch
 ```
 
 When you save changes, `index.html` will be rebuilt.
