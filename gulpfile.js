@@ -75,7 +75,9 @@ gulp.task( 'build', gulp.series( 'styles', 'pug' ) )
 //
 
 gulp.task( 'watch', function() {
-  // Task watch wrapper that prevents an error from bubbling up and stopping the watch process
+  //
+  // Task watch wrapper that prevents the watch process exiting from an error bubbling up to the build script
+  //
   function gulpWatch( globs, fn ) {
     gulp.watch( globs, fn )
       .on( 'error', function() { this.emit('end') } )
