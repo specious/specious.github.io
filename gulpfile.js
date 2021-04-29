@@ -28,13 +28,15 @@ var paths = {
   pug:    './src/index.pug'
 }
 
+var config = JSON.parse( fs.readFileSync( paths.config ) )
+
 //
 // Prune custom fonts to remove glyphs not used in the page
 //
 
 gulp.task( 'fonts', function() {
   return gulp.src( paths.fonts.src + '/airstream.ttf' )
-    .pipe( fontmin( { text: 'Ildar Sagdejev', verbose: true } ) )
+    .pipe( fontmin( { text: config.title, verbose: true } ) )
     .pipe( gulp.dest( paths.fonts.outDir ) )
 } )
 
@@ -59,14 +61,11 @@ gulp.task( 'styles', function() {
 
 gulp.task( 'pug', function() {
   return gulp.src( paths.pug )
-    // Load configuration data from a file
-    //   ( https://codepen.io/hoichi/blog/json-to-jade-in-gulp )
-    .pipe( data( function() {
-      return JSON.parse( fs.readFileSync( './config.json' ) )
-    } ) )
+    // Inject configuration into pug context
+    .pipe( data( config ) )
     .pipe( pug() )
     .pipe( inlineimg() )
-    // Import the CSS
+    // Inline the CSS content directly into the HTML
     //   ( https://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp )
     .pipe( replace( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
       return '<style>' + fs.readFileSync( file, 'utf8' ) + '</style>'
