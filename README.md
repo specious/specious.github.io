@@ -28,7 +28,7 @@ yarn run build
 You can start a watch process over the source files by running:
 
 ```
-yarm run watch
+yarn run watch
 ```
 
 When you save changes, `index.html` will be rebuilt.

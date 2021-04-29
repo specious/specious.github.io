@@ -2,6 +2,7 @@ var gulp     = require('gulp'),
     stylus   = require('gulp-stylus'),
     postcss  = require('gulp-postcss'),
     cssnext  = require('postcss-cssnext'),
+    fontmin  = require('gulp-fontmin'),
     data     = require('gulp-data'),
     pug      = require('gulp-pug'),
     prettify = require('gulp-html-prettify'),
@@ -12,15 +13,30 @@ var gulp     = require('gulp'),
     replace  = require('gulp-replace')
 
 var paths = {
-  styles: {
-    watch: './src/styles/**/*.styl',
-    src:   './src/styles/main.styl',
-    dir:   './build/styles'
-  },
-  pug:    './src/index.pug',
   config: './config.json',
-  images: './images/**/*'
+  styles: {
+    watch:  './src/styles/**/*.styl',
+    src:    './src/styles/main.styl',
+    outDir: './build/styles'
+  },
+  images: './images/**/*',
+  fonts: {
+    watch:  './src/fonts/*',
+    src:    './src/fonts',
+    outDir: './build/fonts'
+  },
+  pug:    './src/index.pug'
 }
+
+//
+// Prune custom fonts to remove glyphs not used in the page
+//
+
+gulp.task( 'fonts', function() {
+  return gulp.src( paths.fonts.src + '/airstream.ttf' )
+    .pipe( fontmin( { text: 'Ildar Sagdejev', verbose: true } ) )
+    .pipe( gulp.dest( paths.fonts.outDir ) )
+} )
 
 //
 // Build style.css
@@ -34,7 +50,7 @@ gulp.task( 'styles', function() {
       cssnext( { browsers: ['last 2 versions'] } )
     ] ) )
     .pipe( concat( 'style.css' ) )
-    .pipe( gulp.dest( paths.styles.dir ) )
+    .pipe( gulp.dest( paths.styles.outDir ) )
 } )
 
 //
@@ -68,7 +84,7 @@ gulp.task( 'pug', function() {
 // Build the product
 //
 
-gulp.task( 'build', gulp.series( 'styles', 'pug' ) )
+gulp.task( 'build', gulp.series( 'fonts', 'styles', 'pug' ) )
 
 //
 // Watch file changes and trigger builds
@@ -84,6 +100,7 @@ gulp.task( 'watch', function() {
   }
 
   gulpWatch( paths.styles.watch, gulp.series( 'build' ) )
+  gulpWatch( paths.fonts.watch,  gulp.series( 'build' ) )
   gulpWatch( paths.pug,    gulp.series( 'pug' ) )
   gulpWatch( paths.config, gulp.series( 'pug' ) )
   gulpWatch( paths.images, gulp.series( 'pug' ) )
