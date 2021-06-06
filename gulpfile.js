@@ -10,7 +10,11 @@ var gulp     = require('gulp'),
     inlineimg= require('gulp-inline-image-html'),
     concat   = require('gulp-concat'),
     fs       = require('fs'),
-    replace  = require('gulp-replace')
+    replace  = require('gulp-replace'),
+    tap      = require('gulp-tap'),
+    log      = require('fancy-log'),
+    puppeteer= require('puppeteer'),
+    path     = require('path')
 
 var paths = {
   config: './config.json',
@@ -65,6 +69,74 @@ gulp.task( 'pug', function() {
     .pipe( data( config ) )
     .pipe( pug() )
     .pipe( inlineimg() )
+    .pipe( tap( async( file ) => {
+log('== launching headless browser (async process) ==')
+      const browser = await puppeteer.launch( { headless: true } );
+log('browser launched')
+      const page = await browser.newPage();
+log('browser new page created')
+      await page.goto("file://" + file.path);
+log('browser page loaded')
+      // Run a function in the headless browser to determine which text is rendered by which custom font
+      let res = await page.evaluate( () => {
+        // Get text contained within a DOM node without also including text held by its child elements
+        function getNodeText( e ) {
+          let text = ''
+
+          for( let i = 0; i < e.childNodes.length; i++ ) {
+            let n = e.childNodes[i]
+
+            if (n.nodeType == Node.TEXT_NODE )
+              text += n.textContent
+          }
+
+          return text
+        }
+
+        let nodes = document.querySelectorAll( '*' )
+        let res = []
+
+        for( let i in nodes ) {
+          let n = nodes[i]
+
+          if( typeof n == 'object' ) {
+            if( ['SCRIPT', 'STYLE', 'TITLE'].includes( n.tagName ) )
+              continue
+
+            let text = getNodeText( n ).trim()
+
+            if( text != '' ) {
+              let style = getComputedStyle( n )
+
+              res.push( {
+                fontFamily: style['font-family'],
+                text
+              } )
+            }
+          }
+        }
+
+        return res
+      } )
+
+log('got custom font results from headless browser')
+console.log(res)
+
+log('compiling table of text associated with each custom font')
+      // Compile the text results into a lookup table by font name
+      let t = res.reduce(
+        ( table, item ) => ( {
+          ...table,
+          [item.fontFamily]: (table[item.fontFamily] || "") + item.text
+        } ), {}
+      )
+
+console.log( t )
+
+log('closing browser...')
+      await browser.close()
+log('browser closed')
+    }))
     // Inline the CSS content directly into the HTML
     //   ( https://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp )
     .pipe( replace( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
