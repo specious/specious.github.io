@@ -1,28 +1,31 @@
 {
+  "build": {
+    "prettify": false
+  },
   "title": "Ildar Sagdejev",
   "links": [
     {
-      "url": "http://twitter.com/webninja256",
+      "url": "https://twitter.com/webninja256",
       "icon": "bird.svg",
       "title": "Twitter"
     },
     {
-      "url": "http://fb.me/tknomad",
+      "url": "https://fb.me/tknomad",
       "icon": "fb.svg",
       "title": "Facebook"
     },
     {
-      "url": "http://www.flickr.com/photos/the-specious",
+      "url": "https://flic.kr/the-specious",
       "icon": "photos.svg",
       "title": "Flickr"
     },
     {
-      "url": "http://codepen.io/tknomad/public/",
+      "url": "https://codepen.io/tknomad",
       "icon": "codepen.svg",
       "title": "CodePen"
     },
     {
-      "url": "http://github.com/specious",
+      "url": "https://github.com/specious",
       "icon": "octocat.svg",
       "title": "GitHub"
     }

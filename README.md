@@ -1,17 +1,23 @@
-Extremely light, configurable, responsive intro page featuring a short info section and spinning circular menu. If you want it, it's yours.
+Extremely light, configurable, responsive intro page featuring a short info section and spinning circular menu.
 
 My [website](https://git.io/specious) serves as the demo.
 
 ## Features
 
-* Responsive layout and pure CSS animations (no dependence on JavaScript)
-* Images and fonts are embedded directly in the HTML file (fast loading and portability)
+* Responsive layout with pure CSS animations (minimal dependence on JavaScript)
 * Configurable rotating circular menu
 * Menu cover swings open when hovered and reveals a hidden element
 
-## Develop
+The build system performs these optimizations:
 
-This project is written in [Pug](https://pugjs.org/) and [Stylus](http://stylus-lang.com/). The [Gulp](https://gulpjs.com/) script is instrumental in building the deliverable product.
+* Images and fonts are embedded directly in the HTML file (fast loading and portability)
+* Custom fonts are pruned to remove all unused glyphs (super light weight)
+
+The product is just one file.
+
+## Start making this your own
+
+This project uses [Pug](https://pugjs.org/) and [Stylus](http://stylus-lang.com/). The build system is based on [Gulp](https://gulpjs.com/).
 
 First, install the dependencies by running:
 
@@ -22,16 +28,20 @@ yarn install
 Build the `index.html` file by running:
 
 ```
-yarn run build
+yarn build
 ```
 
 You can start a watch process over the source files by running:
 
 ```
-yarn run watch
+yarn watch
 ```
 
-When you save changes, `index.html` will be rebuilt.
+`index.html` will automatially be rebuilt every time you change a file.
+
+## Really getting into it?
+
+Read the `gulpfile`.
 
 ## License
 

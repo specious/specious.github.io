@@ -8,34 +8,44 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "specious/specious.github.io"
+    "url": "https://github.com/specious/specious.github.io.git"
   },
   "bugs": {
     "url": "https://github.com/specious/specious.github.io/issues"
   },
   "scripts": {
+    "pre": "gulp analyze",
     "build": "gulp build",
-    "watch": "gulp build-and-watch"
+    "postbuild": "cp -v build/index.html ./",
+    "watch": "gulp watch",
+    "gulp": "gulp",
+    "clean": "rm -rfv build/"
   },
   "devDependencies": {
     "fancy-log": "^1.3.3",
+    "fontmin": "^0.9.8",
+    "glob-base": "^0.3.0",
     "gulp": "^4.0.0",
     "gulp-base64": "^0.1.3",
     "gulp-concat": "^2.6.1",
     "gulp-data": "^1.3.1",
-    "gulp-fontmin": "^0.7.4",
     "gulp-html-prettify": "^0.0.1",
+    "gulp-if": "^3.0.0",
     "gulp-inline-image-html": "specious/gulp-inline-image-html#ad9cdfe",
-    "gulp-postcss": "^7.0.1",
-    "gulp-pug": "^3.3.0",
-    "gulp-replace": "^0.6.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-pug": "^5.0.0",
+    "gulp-replace": "^1.1.3",
     "gulp-stylus": "^2.7.0",
     "gulp-tap": "^2.0.0",
     "inline-images": "specious/inline-images#b4a3c01",
+    "merge2": "^1.4.1",
+    "plugin-error": "^1.0.1",
     "postcss-cssnext": "^3.0.2",
-    "puppeteer": "^9.1.1"
+    "puppeteer": "^10.2.0",
+    "through2-concurrent": "^2.0.0"
   },
   "resolutions": {
-    "gulp-inline-image-html/inline-images": "specious/inline-images#b4a3c01"
+    "gulp-inline-image-html/inline-images": "specious/inline-images#b4a3c01",
+    "html": "^1.0.0"
   }
 }

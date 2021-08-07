@@ -1,190 +1,194 @@
-var gulp     = require('gulp'),
-    stylus   = require('gulp-stylus'),
-    postcss  = require('gulp-postcss'),
-    cssnext  = require('postcss-cssnext'),
-    fontmin  = require('gulp-fontmin'),
-    data     = require('gulp-data'),
-    pug      = require('gulp-pug'),
-    prettify = require('gulp-html-prettify'),
-    base64   = require('gulp-base64'),
-    inlineimg= require('gulp-inline-image-html'),
-    concat   = require('gulp-concat'),
-    fs       = require('fs'),
-    replace  = require('gulp-replace'),
-    tap      = require('gulp-tap'),
-    log      = require('fancy-log'),
-    puppeteer= require('puppeteer'),
-    path     = require('path')
+const { src, dest, series } = gulp = require('gulp')
+const glob = require('glob-base')
+const merge = require('merge2')
+const tap = require('gulp-tap')
+const gulpif = require('gulp-if')
+const stylus = require('gulp-stylus')
+const postcss = require('gulp-postcss')
+const cssnext = require('postcss-cssnext')
+const pug = require('gulp-pug')
+const prettify = require('gulp-html-prettify')
+const data = require('gulp-data')
+const base64 = require('gulp-base64')
+const inlineimg = require('gulp-inline-image-html')
+const replace = require('gulp-replace')
+const concat = require('gulp-concat')
+const fs = require('fs')
+const path = require('path')
+const log = require('fancy-log')
 
-var paths = {
-  config: './config.json',
-  styles: {
-    watch:  './src/styles/**/*.styl',
-    src:    './src/styles/main.styl',
-    outDir: './build/styles'
-  },
-  images: './images/**/*',
-  fonts: {
-    watch:  './src/fonts/*',
-    src:    './src/fonts',
-    outDir: './build/fonts'
-  },
-  pug:    './src/index.pug'
+const browser = require('./lib/browser')
+const fontprune = require('./lib/fontprune')
+
+const dirs = {
+  src: './src/',
+  out: './build/'
 }
 
-var config = JSON.parse( fs.readFileSync( paths.config ) )
+var sources = {
+  config: './config.json',
+  fonts: 'fonts/*',
+  styles: {
+    watch: 'styles/**/*.styl',
+    compile: 'styles/main.styl'
+  },
+  images: 'images/**/*',
+  pug: 'index.pug'
+}
+
+const config = require( sources.config )
 
 //
-// Prune custom fonts to remove glyphs not used in the page
+// Full source path
 //
 
-gulp.task( 'fonts', function() {
-  return gulp.src( paths.fonts.src + '/airstream.ttf' )
-    .pipe( fontmin( { text: config.title, verbose: true } ) )
-    .pipe( gulp.dest( paths.fonts.outDir ) )
-} )
+const srcPath = (x) => (
+  Array.isArray(x) ?
+    x.map(path => dirs.src + path)
+    : dirs.src + x
+)
 
 //
-// Build style.css
+// Associated output directory for a source path
 //
 
-gulp.task( 'styles', function() {
-  return gulp.src( paths.styles.src )
-    .pipe( stylus( { compress: true } ) )
-    .pipe( base64( { extensions: ['woff'] } ) )
-    .pipe( postcss( [
-      cssnext( { browsers: ['last 2 versions'] } )
-    ] ) )
-    .pipe( concat( 'style.css' ) )
-    .pipe( gulp.dest( paths.styles.outDir ) )
-} )
+const outPath = (x) => (
+  dirs.out + glob(x).base
+)
 
 //
-// Build index.html (which embeds a built style.css)
+// Preliminary build to get actual font usage from live page
 //
 
-gulp.task( 'pug', function() {
-  return gulp.src( paths.pug )
-    // Inject configuration into pug context
-    .pipe( data( config ) )
-    .pipe( pug() )
-    .pipe( inlineimg() )
+let fontGlyphs
+
+const analyze = ( done ) => {
+  merge( [
+      src( srcPath( sources.styles.compile ) )
+        .pipe( stylus() )
+        .pipe( concat( 'style.css' ) )
+        .pipe( dest( outPath( sources.styles.compile) ) ),
+
+      src( srcPath( sources.pug ) )
+        .pipe( data( config ) )
+        .pipe( pug() )
+        .pipe( dest( dirs.out ) )
+    ] )
     .pipe( tap( async( file ) => {
-log('== launching headless browser (async process) ==')
-      const browser = await puppeteer.launch( { headless: true } );
-log('browser launched')
-      const page = await browser.newPage();
-log('browser new page created')
-      await page.goto("file://" + file.path);
-log('browser page loaded')
-      // Run a function in the headless browser to determine which text is rendered by which custom font
-      let res = await page.evaluate( () => {
-        // Get text contained within a DOM node without also including text held by its child elements
-        function getNodeText( e ) {
-          let text = ''
+      if( path.extname( file.path ) !== '.html' )
+        return
 
-          for( let i = 0; i < e.childNodes.length; i++ ) {
-            let n = e.childNodes[i]
+      let res = await browser.getTextByFontFamily( file.path )
 
-            if (n.nodeType == Node.TEXT_NODE )
-              text += n.textContent
-          }
+      log( 'Building table of which text is associated with each custom font' )
 
-          return text
-        }
-
-        let nodes = document.querySelectorAll( '*' )
-        let res = []
-
-        for( let i in nodes ) {
-          let n = nodes[i]
-
-          if( typeof n == 'object' ) {
-            if( ['SCRIPT', 'STYLE', 'TITLE'].includes( n.tagName ) )
-              continue
-
-            let text = getNodeText( n ).trim()
-
-            if( text != '' ) {
-              let style = getComputedStyle( n )
-
-              res.push( {
-                fontFamily: style['font-family'],
-                text
-              } )
-            }
-          }
-        }
-
-        return res
-      } )
-
-log('got custom font results from headless browser')
-console.log(res)
-
-log('compiling table of text associated with each custom font')
-      // Compile the text results into a lookup table by font name
-      let t = res.reduce(
+      fontGlyphs = res.reduce(
         ( table, item ) => ( {
           ...table,
           [item.fontFamily]: (table[item.fontFamily] || "") + item.text
         } ), {}
       )
 
-console.log( t )
+      console.log( fontGlyphs )
 
-log('closing browser...')
-      await browser.close()
-log('browser closed')
+      done()
     }))
-    // Inline the CSS content directly into the HTML
-    //   ( https://stackoverflow.com/questions/23820703/how-to-inject-content-of-css-file-into-html-in-gulp )
-    .pipe( replace( /<link rel="stylesheet" href="(.*\.css)">/g, function( s, file ) {
-      return '<style>' + fs.readFileSync( file, 'utf8' ) + '</style>'
-    } ) )
-    .pipe( prettify( {
-      indent_size: 2,
-      wrap_line_length: 32786,
-      indent_inner_html: true,
-      unformatted: ['span', 'strong']
-    } ) )
-    .pipe( gulp.dest( './' ) )
-} )
+}
 
 //
-// Build the product
+// Prune custom fonts to remove glyphs not used in the page
 //
 
-gulp.task( 'build', gulp.series( 'fonts', 'styles', 'pug' ) )
+const fonts = function() {
+  let fontDir = glob( sources.fonts ).base
+
+  return src( srcPath( sources.fonts ) )
+    .pipe( fontprune( { fontGlyphs } ) )
+    .pipe( dest( outPath( sources.fonts ) ) )
+}
+
+//
+// Build style.css
+//
+
+const styles = function() {
+  return src( srcPath( sources.styles.compile ) )
+    .pipe( stylus( { compress: true } ) )
+    .pipe( base64( {
+      extensions: ['ttf'],
+      maxImageSize: 0, /* no size limit */
+      debug: true
+    } ) )
+    .pipe( postcss( [
+      cssnext( { browsers: ['last 2 versions'] } )
+    ] ) )
+    .pipe( concat( 'style.css' ) )
+    .pipe( gulp.dest( outPath( sources.styles.compile ) ) )
+}
+
+//
+// Build index.html
+//
+
+const html = () => {
+  return merge(
+    gulp.src( srcPath( sources.pug ) )
+      .pipe( data( config ) ) // Make configuration available inside pug context
+      .pipe( pug() )
+      .pipe( inlineimg() )
+      .pipe( replace( /<link rel="stylesheet" href="(.*\.css)">/g, function( line, path ) {
+        log('Replacing style tag with contents: ' + path + ' -> ' + (dirs.out + path))
+        return '<style>' + fs.readFileSync( dirs.out + path, 'utf8' ) + '</style>'
+      } ) )
+      .pipe(
+        gulpif(
+          config.build.prettify,
+          prettify( {
+            indent_size: 2,
+            wrap_line_length: 32786,
+            indent_inner_html: true,
+            unformatted: ['span', 'strong']
+          } ) ) )
+      .pipe( dest( outPath( sources.pug ) ) )
+  )
+}
+
+//
+// Build
+//
+
+const build = series( analyze, fonts, styles, html )
 
 //
 // Watch file changes and trigger builds
 //
 
-gulp.task( 'watch', function() {
+const watch = function() {
   //
-  // Task watch wrapper that prevents the watch process exiting from an error bubbling up to the build script
+  // Task watch wrapper that prevents gulp from quitting when an error occurs
   //
-  function gulpWatch( globs, fn ) {
-    gulp.watch( globs, fn )
-      .on( 'error', function() { this.emit('end') } )
+  function keepWatching( glob, a, b ) {
+    gulp.watch( glob, a, b ).on( 'error', () => this.emit('end') )
   }
 
-  gulpWatch( paths.styles.watch, gulp.series( 'build' ) )
-  gulpWatch( paths.fonts.watch,  gulp.series( 'build' ) )
-  gulpWatch( paths.pug,    gulp.series( 'pug' ) )
-  gulpWatch( paths.config, gulp.series( 'pug' ) )
-  gulpWatch( paths.images, gulp.series( 'pug' ) )
-} )
+  keepWatching( srcPath( [
+      sources.config,
+      sources.fonts,
+      sources.styles.watch,
+      sources.images,
+      sources.pug
+    ] ), series( 'build' )
+  )
 
-//
-// The default task is to build the product
-//
+  log( "Watching source files..." )
+}
 
-gulp.task( 'default', gulp.series( 'build' ) )
-
-//
-// Build and watch
-//
-
-gulp.task( 'build-and-watch', gulp.series( 'build', 'watch' ) )
+module.exports = {
+  analyze,
+  fonts,
+  styles,
+  html,
+  build,
+  watch,
+  default: build
+}

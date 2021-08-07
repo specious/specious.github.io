@@ -9,22 +9,21 @@ mixin leaf(link, image, title)
           .glass
 
 html(lang='en')
-  // Ildar Sagdejev ( https://git.io/specious ) 
+  // https://git.io/specious 
   head
     meta(charset='UTF-8')
     title= title
-    link(rel='stylesheet', href='build/styles/style.css')
+    link(rel='stylesheet', href='styles/style.css')
   body
     #content
       h1= title
       #bio
         p
-          | Hello. I'm <span class="name">Ildar Sagdejev</span>. I write open source software so you can poke at the code.
+          | Hello. I'm <span class="name">Ildar Sagdejev</span>. I work on software.
         p
-          | You can reach me at → <a href="mailto:specious@gmail.com">specious at gmail dot com</a>
+          | You can reach me at <a href="https://signal.org">+1 (707) 786-3112</a>
         p
-          | Check out my <a href="http://specious.github.io/projects/">projects</a>
-          | or explore my links wheel to learn more about what I do.
+          | Check out my <a href="http://specious.github.io/projects/">projects</a> or explore my links wheel.
         img.qr(src="images/qr-code.png", alt="QR")
       #disc
         .widget-spinner
