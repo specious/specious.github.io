@@ -4,8 +4,6 @@ const merge = require('merge2')
 const tap = require('gulp-tap')
 const gulpif = require('gulp-if')
 const stylus = require('gulp-stylus')
-const postcss = require('gulp-postcss')
-const cssnext = require('postcss-cssnext')
 const pug = require('gulp-pug')
 const data = require('gulp-data')
 const base64 = require('gulp-base64')
@@ -120,9 +118,6 @@ const styles = function() {
       maxImageSize: 0, /* no size limit */
       debug: true
     } ) )
-    .pipe( postcss( [
-      cssnext( { browsers: ['last 2 versions'] } )
-    ] ) )
     .pipe( concat( 'style.css' ) )
     .pipe( dest( outPath( sources.styles.compile ) ) )
 }
