@@ -7,10 +7,11 @@ const stylus = require('gulp-stylus')
 const postcss = require('gulp-postcss')
 const cssnext = require('postcss-cssnext')
 const pug = require('gulp-pug')
-const prettify = require('gulp-html-prettify')
 const data = require('gulp-data')
 const base64 = require('gulp-base64')
 const inlineimg = require('gulp-inline-image-html')
+const htmlflow = require('@specious/htmlflow')
+const transform = require('gulp-transform')
 const replace = require('gulp-replace')
 const concat = require('gulp-concat')
 const fs = require('fs')
@@ -123,7 +124,7 @@ const styles = function() {
       cssnext( { browsers: ['last 2 versions'] } )
     ] ) )
     .pipe( concat( 'style.css' ) )
-    .pipe( gulp.dest( outPath( sources.styles.compile ) ) )
+    .pipe( dest( outPath( sources.styles.compile ) ) )
 }
 
 //
@@ -131,26 +132,23 @@ const styles = function() {
 //
 
 const html = () => {
-  return merge(
-    gulp.src( srcPath( sources.pug ) )
-      .pipe( data( config ) ) // Make configuration available inside pug context
-      .pipe( pug() )
-      .pipe( inlineimg() )
-      .pipe( replace( /<link rel="stylesheet" href="(.*\.css)">/g, function( line, path ) {
-        log('Replacing style tag with contents: ' + path + ' -> ' + (dirs.out + path))
-        return '<style>' + fs.readFileSync( dirs.out + path, 'utf8' ) + '</style>'
-      } ) )
-      .pipe(
-        gulpif(
-          config.build.prettify,
-          prettify( {
-            indent_size: 2,
-            wrap_line_length: 32786,
-            indent_inner_html: true,
-            unformatted: ['span', 'strong']
-          } ) ) )
-      .pipe( dest( outPath( sources.pug ) ) )
-  )
+  return src( srcPath( sources.pug ) )
+    .pipe( data( config ) ) // Inject configuration into pug context
+    .pipe( pug() )
+    .pipe( inlineimg() )
+    .pipe( replace( /<link rel="stylesheet" href="(.*\.css)">/g, function( line, path ) {
+      log('Replacing style tag with contents: ' + path + ' -> ' + (dirs.out + path))
+      return '<style>' + fs.readFileSync( dirs.out + path ) + '</style>'
+    } ) )
+    .pipe(
+      gulpif(
+        config.build.prettify,
+        transform( ('utf8', async (content, file) => (
+          Buffer.from(await htmlflow(content.toString()))
+        ) ) )
+      )
+    )
+    .pipe( dest( outPath( sources.pug ) ) )
 }
 
 //

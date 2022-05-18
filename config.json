@@ -1,6 +1,6 @@
 {
   "build": {
-    "prettify": false
+    "prettify": true
   },
   "title": "Ildar Sagdejev",
   "links": [
