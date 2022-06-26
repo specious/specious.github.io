@@ -4,7 +4,7 @@ My [website](https://git.io/specious) serves as the demo.
 
 ## Features
 
-* Responsive layout with pure CSS animations (minimal dependence on JavaScript)
+* [Responsive](https://en.wikipedia.org/wiki/Responsive_web_design) layout with pure CSS animations (virtually no dependence on JavaScript)
 * Configurable rotating circular menu
 * Menu cover swings open when hovered and reveals a hidden element
 
@@ -31,21 +31,33 @@ Build the `index.html` file:
 pnpm build
 ```
 
-You can start a watch process over the source files:
+Even better, you can start a watch process over the source files:
 
 ```
 pnpm watch
 ```
 
-`index.html` will automatially be rebuilt every time a change is detected in a source file.
+Now `index.html` will automatially be rebuilt every time a change is detected in a source file.
 
 ## Really getting into it?
 
-Look at the `gulpfile`.
+Start by looking at the build system in `gulpfile.js`.
 
 ## Caveats
 
 - Font glyph pruning only works on TTF source fonts, but it outputs a WOFF version of the pruned font alongside the pruned TTF
+
+## Reducing the size of the produced index.html
+
+### Fonts
+
+TrueType fonts contain [required and optional](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6.html) tables. Use a tool like [ftCLI](https://github.com/ftCLI/ftCLI) to remove optional tables from the source font files.
+
+### Images
+
+- Optimize SVGs with a tool like [svgo](https://github.com/svg/svgo) or by hand. Read the [docs](https://www.w3.org/TR/svg-paths/#Introduction).
+- Optimize PNG files with [optipng](http://optipng.sourceforge.net) or [pngcrush](https://pmt.sourceforge.io/pngcrush/).
+- Optimize JPG files with [jpegoptim](https://github.com/tjko/jpegoptim).
 
 ## License
 

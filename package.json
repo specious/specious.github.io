@@ -24,7 +24,7 @@
   "devDependencies": {
     "@specious/htmlflow": "^1.1.0",
     "fancy-log": "^2.0.0",
-    "fontmin": "0.9.8",
+    "fontmin": "^0.9.9",
     "glob-base": "^0.3.0",
     "gulp": "^4.0.2",
     "gulp-base64": "^0.1.3",
