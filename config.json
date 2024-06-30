@@ -5,12 +5,12 @@
   "title": "Ildar Sagdejev",
   "links": [
     {
-      "url": "https://twitter.com/codemutation",
+      "url": "https://x.com/codemutation",
       "icon": "bird.svg",
       "title": "Twitter"
     },
     {
-      "url": "https://fb.me/tknomad",
+      "url": "https://fb.me/codemutation",
       "icon": "fb.svg",
       "title": "Facebook"
     },
@@ -20,7 +20,7 @@
       "title": "Flickr"
     },
     {
-      "url": "https://codepen.io/tknomad",
+      "url": "https://codepen.io/codemutation",
       "icon": "codepen.svg",
       "title": "CodePen"
     },
