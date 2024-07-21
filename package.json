@@ -39,7 +39,7 @@
     "gulp-transform": "^3.0.5",
     "merge2": "^1.4.1",
     "plugin-error": "^2.0.1",
-    "puppeteer": "^22.12.1",
+    "puppeteer": "^22.13.1",
     "through2-concurrent": "^2.0.0"
   },
   "resolutions": {
